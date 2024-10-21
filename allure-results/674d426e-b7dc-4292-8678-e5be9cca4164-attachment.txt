@@ -1,0 +1,295 @@
+[2024-10-15T13:42:37.006Z] [SEVERE] http://46.101.147.48/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:40.582Z] [SEVERE] http://46.101.147.48/women.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:40.664Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:41.862Z] [SEVERE] http://46.101.147.48/women/tops-women.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:41.909Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:43.263Z] [SEVERE] http://46.101.147.48/breathe-easy-tank.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:43.377Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:46.339Z] [SEVERE] http://46.101.147.48/checkout/cart/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:46.381Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:47.883Z] [SEVERE] http://46.101.147.48/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:47.967Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:48.638Z] [SEVERE] http://46.101.147.48/women.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:48.702Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:49.269Z] [SEVERE] http://46.101.147.48/women/tops-women.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:49.401Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:50.292Z] [SEVERE] http://46.101.147.48/breathe-easy-tank.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:50.335Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:51.677Z] [SEVERE] http://46.101.147.48/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:51.736Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:52.387Z] [SEVERE] http://46.101.147.48/women.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:52.434Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:52.927Z] [SEVERE] http://46.101.147.48/women/test-test.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:52.977Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:53.370Z] [SEVERE] http://46.101.147.48/bundle.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:53.383Z] [WARNING] http://46.101.147.48/bundle.html 524 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:42:53.383Z] [WARNING] http://46.101.147.48/bundle.html 527 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:42:53.383Z] [WARNING] http://46.101.147.48/bundle.html 531 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:42:53.383Z] [WARNING] http://46.101.147.48/bundle.html 536 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:42:53.383Z] [WARNING] http://46.101.147.48/bundle.html 539 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:42:53.383Z] [WARNING] http://46.101.147.48/bundle.html 543 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:42:53.383Z] [WARNING] http://46.101.147.48/bundle.html 548 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:42:53.383Z] [WARNING] http://46.101.147.48/bundle.html 551 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:42:53.383Z] [WARNING] http://46.101.147.48/bundle.html 555 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:42:53.421Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:55.042Z] [SEVERE] http://46.101.147.48/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:55.100Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:55.750Z] [SEVERE] http://46.101.147.48/women.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:55.804Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:56.247Z] [SEVERE] http://46.101.147.48/women/tops-women.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:56.291Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:57.377Z] [SEVERE] http://46.101.147.48/breathe-easy-tank.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:57.407Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:58.553Z] [SEVERE] http://46.101.147.48/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:58.605Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:59.432Z] [SEVERE] http://46.101.147.48/women.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:42:59.480Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:42:59.979Z] [SEVERE] http://46.101.147.48/women/tops-women.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:00.032Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:00.906Z] [SEVERE] http://46.101.147.48/breathe-easy-tank.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:00.954Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:02.091Z] [SEVERE] http://46.101.147.48/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:02.139Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:02.914Z] [SEVERE] http://46.101.147.48/women.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:02.964Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:03.418Z] [SEVERE] http://46.101.147.48/women/test-test.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:03.467Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:03.883Z] [SEVERE] http://46.101.147.48/bundle.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:03.898Z] [WARNING] http://46.101.147.48/bundle.html 524 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:03.898Z] [WARNING] http://46.101.147.48/bundle.html 527 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:03.898Z] [WARNING] http://46.101.147.48/bundle.html 531 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:03.898Z] [WARNING] http://46.101.147.48/bundle.html 536 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:03.898Z] [WARNING] http://46.101.147.48/bundle.html 539 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:03.898Z] [WARNING] http://46.101.147.48/bundle.html 543 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:03.898Z] [WARNING] http://46.101.147.48/bundle.html 548 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:03.898Z] [WARNING] http://46.101.147.48/bundle.html 551 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:03.898Z] [WARNING] http://46.101.147.48/bundle.html 555 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:03.956Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:06.297Z] [SEVERE] http://46.101.147.48/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:06.355Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:07.043Z] [SEVERE] http://46.101.147.48/women.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:07.098Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:07.584Z] [SEVERE] http://46.101.147.48/women/test-test.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:07.637Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:08.472Z] [SEVERE] http://46.101.147.48/kate-s-product-blue.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:08.515Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:09.093Z] [SEVERE] http://46.101.147.48/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:09.149Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:09.808Z] [SEVERE] http://46.101.147.48/women.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:09.860Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:10.323Z] [SEVERE] http://46.101.147.48/women/test-test.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:10.373Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:10.762Z] [SEVERE] http://46.101.147.48/bundle.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:10.775Z] [WARNING] http://46.101.147.48/bundle.html 524 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:10.775Z] [WARNING] http://46.101.147.48/bundle.html 527 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:10.775Z] [WARNING] http://46.101.147.48/bundle.html 531 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:10.775Z] [WARNING] http://46.101.147.48/bundle.html 536 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:10.775Z] [WARNING] http://46.101.147.48/bundle.html 539 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:10.775Z] [WARNING] http://46.101.147.48/bundle.html 543 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:10.776Z] [WARNING] http://46.101.147.48/bundle.html 548 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:10.776Z] [WARNING] http://46.101.147.48/bundle.html 551 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:10.776Z] [WARNING] http://46.101.147.48/bundle.html 555 A span tag was parsed inside of a <select> which was not inserted into the document. This is not valid HTML and the behavior may be changed in future versions of chrome.
+
+[2024-10-15T13:43:10.808Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:13.734Z] [SEVERE] http://46.101.147.48/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:13.794Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:14.593Z] [SEVERE] http://46.101.147.48/women.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:14.657Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:15.206Z] [SEVERE] http://46.101.147.48/women/tops-women.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:15.274Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:16.622Z] [SEVERE] http://46.101.147.48/breathe-easy-tank.html - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:16.686Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:19.779Z] [SEVERE] http://46.101.147.48/checkout/cart/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:19.827Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:20.991Z] [SEVERE] http://46.101.147.48/checkout/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:21.031Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:21.544Z] [SEVERE] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/MSP_ReCaptcha/js/reCaptcha.js 71 [Report Only] Refused to load the script 'https://www.google.com/recaptcha/api.js?onload=globalOnRecaptchaOnLoadCallback&render=explicit' because it violates the following Content Security Policy directive: "script-src assets.adobedtm.com geostag.cardinalcommerce.com 1eafstag.cardinalcommerce.com geoapi.cardinalcommerce.com 1eafapi.cardinalcommerce.com songbird.cardinalcommerce.com includestest.ccdc02.com www.googleadservices.com www.google-analytics.com secure.authorize.net test.authorize.net www.paypal.com www.sandbox.paypal.com www.paypalobjects.com t.paypal.com s.ytimg.com video.google.com vimeo.com www.vimeo.com js.authorize.net jstest.authorize.net cdn-scripts.signifyd.com www.youtube.com js.braintreegateway.com 'self' 'unsafe-inline' 'unsafe-eval'". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback.
+
+
+[2024-10-15T13:43:21.646Z] [SEVERE] https://www.google.com/recaptcha/api.js?onload=globalOnRecaptchaOnLoadCallback&render=explicit 0 [Report Only] Refused to load the script 'https://www.gstatic.com/recaptcha/releases/aR-zv8WjtWx4lAw-tRCA-zca/recaptcha__ru.js' because it violates the following Content Security Policy directive: "script-src assets.adobedtm.com geostag.cardinalcommerce.com 1eafstag.cardinalcommerce.com geoapi.cardinalcommerce.com 1eafapi.cardinalcommerce.com songbird.cardinalcommerce.com includestest.ccdc02.com www.googleadservices.com www.google-analytics.com secure.authorize.net test.authorize.net www.paypal.com www.sandbox.paypal.com www.paypalobjects.com t.paypal.com s.ytimg.com video.google.com vimeo.com www.vimeo.com js.authorize.net jstest.authorize.net cdn-scripts.signifyd.com www.youtube.com js.braintreegateway.com 'self' 'unsafe-inline' 'unsafe-eval'". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback.
+
+
+[2024-10-15T13:43:25.333Z] [SEVERE] http://46.101.147.48/checkout/onepage/success/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:25.380Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:25.706Z] [SEVERE] http://46.101.147.48/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:25.775Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:26.499Z] [SEVERE] http://46.101.147.48/customer/account/create/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:26.550Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:27.419Z] [SEVERE] http://46.101.147.48/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:27.481Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:28.187Z] [SEVERE] http://46.101.147.48/customer/account/create/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:28.235Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:29.607Z] [SEVERE] http://46.101.147.48/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:29.669Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:30.427Z] [SEVERE] http://46.101.147.48/customer/account/create/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:30.476Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:31.679Z] [SEVERE] http://46.101.147.48/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:31.740Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:32.423Z] [SEVERE] http://46.101.147.48/customer/account/create/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:32.468Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:33.727Z] [SEVERE] http://46.101.147.48/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:33.799Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:34.606Z] [SEVERE] http://46.101.147.48/customer/account/create/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:34.651Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:35.953Z] [SEVERE] http://46.101.147.48/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:36.013Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:36.623Z] [SEVERE] http://46.101.147.48/customer/account/create/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:36.672Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:37.942Z] [SEVERE] http://46.101.147.48/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:38.004Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:38.687Z] [SEVERE] http://46.101.147.48/customer/account/create/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:38.734Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:40.497Z] [SEVERE] http://46.101.147.48/customer/account/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:40.550Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:41.596Z] [SEVERE] http://46.101.147.48/customer/account/logoutSuccess/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:41.646Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:41.987Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.parseJSON requires a valid JSON string"
+
+[2024-10-15T13:43:42.133Z] [SEVERE] http://46.101.147.48/customer/account/login/referer/aHR0cDovLzQ2LjEwMS4xNDcuNDgvY3VzdG9tZXIvYWNjb3VudC9sb2dvdXRTdWNjZXNzLw%2C%2C/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:42.182Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:43.407Z] [SEVERE] http://46.101.147.48/customer/account/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:43.456Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
+
+[2024-10-15T13:43:44.202Z] [SEVERE] http://46.101.147.48/ - The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline''
+
+[2024-10-15T13:43:44.260Z] [WARNING] http://46.101.147.48/static/version1640874383/frontend/Magento/luma/en_US/jquery/jquery-migrate.js 44:11 "JQMIGRATE: jQuery.attrFn is deprecated"
