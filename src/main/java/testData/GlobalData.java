@@ -1,5 +1,7 @@
 package testData;
 
+import org.openqa.selenium.By;
+
 import java.util.Date;
 
 public class GlobalData{
@@ -33,14 +35,16 @@ public class GlobalData{
 
     //Info messages
     public static final String successATCMessagePartly = "You added";
-    public static final String successRegisterMessage = "Thank you 888for registering with Main Website Store.";
+    public static final String successRegisterMessage = "Thank you for registering with Main Website Store.";
     public static final String successLogOutMessage = "You are signed out";
     public static final String successOrderCreatingMessage = "Thank you for your purchase!";
     public static final String requiredFieldError = "This is a required field.";
     public static final String overMaxQtyError = "The maximum you may purchase is 10000.";
+    public static final String overMinQtyError = "Please enter a quantity greater than 0.";
+    public static final String overMaxQtyGroupError = "The requested qty exceeds the maximum qty allowed in shopping cart";
     public static final String invalidEmailError = "Please enter a valid email address (Ex: johndoe@domain.com).";
     public static final String invalidConfirmPasswordError = "Please enter the same value again.";
     public static final String tooShortPasswordError = "Minimum length of this field must be equal or greater than 8 symbols. Leading and trailing spaces will be ignored.";
     public static final String noLetterOrSymbolOrDigitPasswordError = "Minimum of different classes of characters in password is 3. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.";
-
+    public static final String emptyCartNotification = "You have no items in your shopping cart.";
 }

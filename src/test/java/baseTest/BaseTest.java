@@ -3,9 +3,9 @@ package baseTest;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
-import java.util.logging.Level;
-import org.openqa.selenium.chrome.ChromeOptions;
+
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -32,6 +32,7 @@ public class BaseTest extends BrowserFactory {
     }
 
     //install in test
+    @Step("{url} is opened in browser")
     protected void start(String url) {
         URL.set(url);
         openBrowser();
@@ -40,6 +41,8 @@ public class BaseTest extends BrowserFactory {
     private void setTools(){
         softAssert = new SoftAssert();
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        Selenide.clearBrowserLocalStorage();
+        Selenide.clearBrowserCookies();
     }
     private void openBrowser(){
         String urlAddress = URL.get();
@@ -55,40 +58,5 @@ public class BaseTest extends BrowserFactory {
         WebDriverRunner.closeWebDriver();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    protected void setUp(){
-//        WebDriverManager.chromedriver().setup();
-//        Configuration.browser = "chrome";
-//        Configuration.webdriverLogsEnabled = true;
-//        Configuration.browserSize = "fullscreen";
-//        Configuration.headless = false;
-//        Selenide.open(GlobalData.mainURL);
-//        homepage = new Homepage();
-//        softAssert = new SoftAssert();
-//    }
-
-//    @BeforeTest
-//    public void start(){
-//        setUp();
-//    }
-//    @AfterTest
-//    public void tearDown(){
-//        Selenide.closeWebDriver();
-//    }
 
 

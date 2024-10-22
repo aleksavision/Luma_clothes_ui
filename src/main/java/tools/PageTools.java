@@ -275,15 +275,6 @@ public class PageTools {
         input.shouldBe(Condition.visible).sendKeys(text);
     }
 
-    protected void clickRandomElement(By by, Object... args) {
-        $$(byLocator(by, args))
-                .stream()
-                .findAny()
-                .ifPresentOrElse(
-                        SelenideElement::click,
-                        () -> InfoLogger.logError("No elements found for the locator: " + byLocator(by, args))
-                );
-    }
 
     protected void jsIsElementByParentVisible(By byParent, Object... args) {
         InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(byParent, args));
@@ -295,23 +286,6 @@ public class PageTools {
         InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(by, args));
         SelenideElement element = $(fieldset).$(byLocator(by, args));
         return element.is(Condition.visible);
-    }
-
-    protected void selectRandomOption(By dropdown, By option, String exception, Object... args) {
-        InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(dropdown, args));
-        Random random = new Random();
-//        int randomOption = random.nextInt($$(option).size());
-//        String optionText = $$(option).get(randomOption).getText();
-//        if(optionText != exception){
-//            $(byLocator(dropdown, args)).shouldBe(Condition.visible).selectOption(randomOption);
-
-        int randomOption;
-        String optionText;
-        do{
-            randomOption = random.nextInt($$(option).size());
-            optionText = $$(option).get(randomOption).getText();
-        } while (optionText.contains(exception));
-        $(byLocator(dropdown, args)).shouldBe(Condition.visible).selectOption(randomOption);
     }
 
 

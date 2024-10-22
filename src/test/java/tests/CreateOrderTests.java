@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import pages.Pages;
 import testData.GlobalData;
 
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class CreateOrderTests extends BaseTest {
@@ -21,16 +20,11 @@ public class CreateOrderTests extends BaseTest {
         String state = "Alabama";
         String country = "United States";
 
-        Pages.homepage().clickWomenMenuButton().clickTopsLink().clickRandomProductCard();
-        assertTrue(Pages.productPage().productImageIsDisplayed());
-        assertTrue(Pages.productPage().productNameIsDisplayed());
-        assertTrue(Pages.productPage().priceIsDisplayed());
-        assertTrue(Pages.productPage().sizeButtonIsDisplayed());
-        assertTrue(Pages.productPage().colorButtonIsDisplayed());
-        assertEquals(Pages.productPage().getStockInfo(), GlobalData.inStockInfo);
+        Pages.homepage().clickWomenMenuButton().clickTopsLink().clickFirstProductCard();
+        Pages.productPage().mainElementsIsDisplayedAsserts();
 
-        Pages.productPage().selectRandomSize();
-        Pages.productPage().selectRandomColor();
+        Pages.productPage().selectSize();
+        Pages.productPage().selectColor();
         Pages.productPage().clickAddToCartButton();
         softAssert.assertTrue(Pages.productPage().getSuccessATCMessage().startsWith(GlobalData.successATCMessagePartly));
 

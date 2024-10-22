@@ -15,8 +15,6 @@ import static pages.Pages.homepage;
 
 public class RegisterTests extends BaseTest {
 
-
-
     @Test (groups = {"success", "register"})
     @Description("User is registered successfully. User is logged out and logged in with new creds successfully.")
     @Severity(SeverityLevel.CRITICAL)
@@ -24,7 +22,7 @@ public class RegisterTests extends BaseTest {
         start(GlobalData.mainURL);
         String email = new EmailGenerator().generateUniqueEmail();
 
-        homepage().clickCreateAnAccountLink();
+        Pages.homepage().clickCreateAnAccountLink();
         Pages.registerPage().allFieldsCtaAsserts();
 
         Pages.registerPage().setFirstNameInput(GlobalData.firstName);
@@ -38,11 +36,8 @@ public class RegisterTests extends BaseTest {
         Pages.myAccountPage().clickSignOutLink();
         softAssert.assertEquals(Pages.successLogoutPage().getSuccessMessage(), GlobalData.successLogOutMessage);
 
-        homepage().clickSignInLink();
-        assertTrue(Pages.loginPage().emailLabelIsDisplayed());
-        assertTrue(Pages.loginPage().passwordLabelIsDisplayed());
-        assertTrue(Pages.loginPage().forgetPasswordLinkIsDisplayed());
-        assertTrue(Pages.loginPage().createAnAccountButtonIsDisplayed());
+        Pages.homepage().clickSignInLink();
+        Pages.loginPage().mainElementsIsDisplayedAsserts();
 
         Pages.loginPage().setEmailInput(email);
         Pages.loginPage().setPasswordInput(GlobalData.validPassword);
@@ -57,7 +52,7 @@ public class RegisterTests extends BaseTest {
     public void emptyRegisterForm(){
         start(GlobalData.mainURL);
 
-        homepage().clickCreateAnAccountLink();
+        Pages.homepage().clickCreateAnAccountLink();
         Pages.registerPage().allFieldsCtaAsserts();
 
         Pages.registerPage().clickCreateAnAccountButton();
@@ -75,7 +70,7 @@ public class RegisterTests extends BaseTest {
     public void invalidEmail() {
         start(GlobalData.mainURL);
 
-        homepage().clickCreateAnAccountLink();
+        Pages.homepage().clickCreateAnAccountLink();
         Pages.registerPage().allFieldsCtaAsserts();
 
         Pages.registerPage().setFirstNameInput(GlobalData.firstName);
@@ -95,7 +90,7 @@ public class RegisterTests extends BaseTest {
         start(GlobalData.mainURL);
         String email = new EmailGenerator().generateUniqueEmail();
 
-        homepage().clickCreateAnAccountLink();
+        Pages.homepage().clickCreateAnAccountLink();
         Pages.registerPage().allFieldsCtaAsserts();
 
         Pages.registerPage().setFirstNameInput(GlobalData.firstName);
@@ -115,7 +110,7 @@ public class RegisterTests extends BaseTest {
         start(GlobalData.mainURL);
         String email = new EmailGenerator().generateUniqueEmail();
 
-        homepage().clickCreateAnAccountLink();
+        Pages.homepage().clickCreateAnAccountLink();
         Pages.registerPage().allFieldsCtaAsserts();
 
         Pages.registerPage().setFirstNameInput(GlobalData.firstName);
@@ -135,7 +130,7 @@ public class RegisterTests extends BaseTest {
         start(GlobalData.mainURL);
         String email = new EmailGenerator().generateUniqueEmail();
 
-        homepage().clickCreateAnAccountLink();
+        Pages.homepage().clickCreateAnAccountLink();
         Pages.registerPage().allFieldsCtaAsserts();
 
         Pages.registerPage().setFirstNameInput(GlobalData.firstName);
@@ -155,7 +150,7 @@ public class RegisterTests extends BaseTest {
         start(GlobalData.mainURL);
         String email = new EmailGenerator().generateUniqueEmail();
 
-        homepage().clickCreateAnAccountLink();
+        Pages.homepage().clickCreateAnAccountLink();
         Pages.registerPage().allFieldsCtaAsserts();
 
         Pages.registerPage().setFirstNameInput(GlobalData.firstName);
@@ -175,7 +170,7 @@ public class RegisterTests extends BaseTest {
         start(GlobalData.mainURL);
         String email = new EmailGenerator().generateUniqueEmail();
 
-        homepage().clickCreateAnAccountLink();
+        Pages.homepage().clickCreateAnAccountLink();
         Pages.registerPage().allFieldsCtaAsserts();
 
         Pages.registerPage().setFirstNameInput(GlobalData.firstName);
