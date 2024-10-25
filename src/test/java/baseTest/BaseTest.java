@@ -7,6 +7,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
 
 import org.testng.ITestContext;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.asserts.SoftAssert;
@@ -41,8 +42,6 @@ public class BaseTest extends BrowserFactory {
     private void setTools(){
         softAssert = new SoftAssert();
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        Selenide.clearBrowserLocalStorage();
-        Selenide.clearBrowserCookies();
     }
     private void openBrowser(){
         String urlAddress = URL.get();
@@ -52,6 +51,11 @@ public class BaseTest extends BrowserFactory {
         } else {
             InfoLogger.logInfo("URL is not set. Please use setUrl() method to set the URL before opening the browser.");
         }
+    }
+    @AfterMethod
+    protected void  cleanWebsiteData(){
+        Selenide.clearBrowserLocalStorage();
+        Selenide.clearBrowserCookies();
     }
     @AfterTest
     protected void closeBrowser(ITestContext context) {

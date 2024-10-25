@@ -54,6 +54,7 @@ public class ProductPage extends PageTools {
     @Step("Click Add to Cart button")
     public void clickAddToCartButton() {
         click(addToCartButton);
+        waitForElementEnabled(addToCartButton);
     }
     @Step("Click Shopping Cart link")
     public ShoppingCartPage clickShoppingCartLink() {
