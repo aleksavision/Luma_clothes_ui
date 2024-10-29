@@ -3,7 +3,7 @@ name: run all tests
 on:
   push:
     branches:
-      'simpleRun/*'
+      'simpleRun'
 
 jobs:
   run-unit-tests:
