@@ -19,13 +19,35 @@ jobs:
           java-version: '22'
           distribution: 'temurin'
 
+      - name: Cache Java
+        uses: actions/cache@v3
+        with:
+          path: ~/.sdkman/candidates/java
+          key: ${{ runner.os }}-java-${{ hashFiles('**/pom.xml') }}
+
       - name: Cache Maven dependencies
         uses: actions/cache@v3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
-              ${{ runner.os }}-maven-
+            ${{ runner.os }}-maven-
+
+      - name: Cache Chrome
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/google-chrome
+          key: ${{ runner.os }}-chrome-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-chrome-
+
+      - name: Cache ChromeDriver
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/chromedriver
+          key: ${{ runner.os }}-chromedriver-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-chromedriver-
 
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1.7.2
@@ -35,13 +57,19 @@ jobs:
       - name: run all tests
         run: mvn test
 
-      - name: Generate Allure Report
+      - name: Install Allure
         run: |
-            allure generate target/allure-results -o target/allure-report
-        if: always()
+          choco install allure  # Для Windows
 
-      - name: Deploy Allure Report to GitHub Pages
+      - name: Check Allure version
+        run: allure --version
+
+      - name: Generate Allure Report
+        run: allure generate target/allure-results -o target/allure-report
+
+      - name: Publish Allure Report
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./target/allure-report
+          publish_dir: target/allure-report
+          publish_branch: gh-pages  # Ветка, на которую будете публиковать
