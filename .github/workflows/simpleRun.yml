@@ -55,9 +55,6 @@ jobs:
           chrome-version: 'latest'
           install-chromedriver: true
 
-      - name: run all tests
-        run: mvn test
-
       - name: Install Scoop
         run: |
           iwr get.scoop.sh -useb | iex
@@ -66,8 +63,14 @@ jobs:
         run: |
           scoop install allure
 
+      - name: Set PATH
+        run: echo "$GITHUB_PATH" >> $GITHUB_ENV
+
       - name: Check Allure version
         run: allure --version
+
+      - name: run all tests
+        run: mvn test
 
       - name: Allure report
         uses: afiore/action-allure-report@v0.1.0
