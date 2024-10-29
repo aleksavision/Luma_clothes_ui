@@ -20,13 +20,13 @@ jobs:
           distribution: 'temurin'
 
       - name: Cache Java
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.sdkman/candidates/java
           key: ${{ runner.os }}-java-${{ hashFiles('**/pom.xml') }}
 
       - name: Cache Maven dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -34,7 +34,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Cache Chrome
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/google-chrome
           key: ${{ runner.os }}-chrome-${{ hashFiles('**/package-lock.json') }}
@@ -42,7 +42,7 @@ jobs:
             ${{ runner.os }}-chrome-
 
       - name: Cache ChromeDriver
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/chromedriver
           key: ${{ runner.os }}-chromedriver-${{ hashFiles('**/package-lock.json') }}
@@ -50,9 +50,10 @@ jobs:
             ${{ runner.os }}-chromedriver-
 
       - name: Setup Chrome
-        uses: browser-actions/setup-chrome@v1.7.2
+        uses: browser-actions/setup-chrome@v1
         with:
-          chromedriver-version: latest
+          chrome-version: 'latest'
+          install-chromedriver: true
 
       - name: run all tests
         run: mvn test
