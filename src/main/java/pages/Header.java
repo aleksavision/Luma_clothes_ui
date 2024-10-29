@@ -26,6 +26,7 @@ public class Header extends PageTools {
     }
     @Step("Click Sign Out link in header")
     public void clickSignOutLink(){
+        waitForElementVisible(userMenuArrow);
         click(userMenuArrow);
         click(sighOutLink);
     }
@@ -35,6 +36,7 @@ public class Header extends PageTools {
     }
     @Step("Check if Sign Out link is displayed")
     public boolean signOutLinkIsDisplayed(){
+        waitForElementVisible(userMenuArrow);
         click(userMenuArrow);
         return isElementVisible(sighOutLink);
     }
