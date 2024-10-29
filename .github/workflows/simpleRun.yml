@@ -38,7 +38,7 @@ jobs:
       - name: Generate Allure Report
         run: |
             allure generate target/allure-results -o target/allure-report
-          if: always()  # Генерация отчета даже при падении тестов
+        if: always()
 
       - name: Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
