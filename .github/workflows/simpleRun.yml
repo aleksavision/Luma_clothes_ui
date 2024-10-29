@@ -28,7 +28,7 @@ jobs:
       - name: Cache Maven dependencies
         uses: actions/cache@v4
         with:
-          path: ~/.m2/repository
+          path: C:/Users/runneradmin/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
@@ -58,9 +58,16 @@ jobs:
       - name: run all tests
         run: mvn test
 
-      - name: Install Allure
-        run: |
-          choco install allure  # Для Windows
+      - name: Chocolatey Action - Install Allure
+        uses: crazy-max/ghaction-chocolatey@v3.2.0
+        with:
+          args: install allure
+
+      - name: Allure report
+        uses: afiore/action-allure-report@v0.1.0
+        with:
+          results-dir: target/allure-results     # Директория с результатами тестов
+          report-dir: target/allure-report       # Директория для HTML-отчета
 
       - name: Check Allure version
         run: allure --version
