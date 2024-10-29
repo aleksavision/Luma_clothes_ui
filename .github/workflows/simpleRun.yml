@@ -18,10 +18,9 @@ jobs:
         with:
           java-version: '22'
           distribution: 'temurin'
-      - name: Install ChromeDriver
-        uses: nanasess/setup-chromedriver@v1
-        with:
-          chromedriver-version: latest
+    
+      - name: Setup ChromeDriver
+        uses: browser-actions/setup-chromedriver@v1
 
       - name: run all tests
         run: mvn test
