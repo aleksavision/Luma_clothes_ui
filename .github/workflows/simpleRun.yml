@@ -19,8 +19,10 @@ jobs:
           java-version: '22'
           distribution: 'temurin'
     
-      - name: Setup ChromeDriver
-        uses: browser-actions/setup-chromedriver@v1
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1.7.2
+        with:
+          chromedriver-version: latest
 
       - name: run all tests
         run: mvn test
