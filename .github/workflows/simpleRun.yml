@@ -26,3 +26,14 @@ jobs:
 
       - name: run all tests
         run: mvn test
+
+      - name: Generate Allure Report
+        run: |
+          allure generate target/allure-results -o target/allure-report
+        if: always()  # Генерация отчета даже при падении тестов
+
+      - name: allure-html-reporter-github-pages
+        uses: PavanMudigonda/allure-html-reporter-github-pages@v1.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/allure-report
