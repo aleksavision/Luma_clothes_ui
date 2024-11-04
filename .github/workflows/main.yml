@@ -87,9 +87,15 @@ jobs:
         run: allure generate target/allure-results -o target/allure-report
         if: always()
 
-      - name: Publish Allure Report
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload Allure report as artifact   #сохранить отчеты как артефакты в GitHub Actions
+        uses: actions/upload-artifact@v2
         with:
-          github_token: ${{ secrets.MY_GITHUB_TOKEN1 }}
-          publish_dir: target/allure-report
-          publish_branch: gh-pages  # Ветка, на которую будете публиковать
+          name: allure-report
+          path: target/allure-report
+
+#      - name: Publish Allure Report       # Публикация через сервис GitHub Pages
+#        uses: peaceiris/actions-gh-pages@v4
+#        with:
+#          github_token: ${{ secrets.MY_GITHUB_TOKEN1 }}
+#          publish_dir: target/allure-report
+#          publish_branch: gh-pages  # Ветка, на которую будете публиковать
