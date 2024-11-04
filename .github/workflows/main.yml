@@ -84,9 +84,6 @@ jobs:
 #      - name: run all tests
 #        run: mvn test
 
-      - name: Change to project directory
-        run: cd D:\a\Luma_clothes_ui
-
       - name: Run tests with TestNG XML
         run: mvn test -DsuiteXmlFile=testng.xml
 
