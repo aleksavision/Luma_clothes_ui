@@ -77,12 +77,6 @@ jobs:
 #      - name: Run tests with TestNG XML
 #        run: mvn test -DsuiteXmlFile=testng.xml
 
-#      - name: Allure report
-#        uses: afiore/action-allure-report@v0.1.0
-#        with:
-#          results-dir: allure-results     # Директория с результатами тестов
-#          report-dir: allure-report       # Директория для HTML-отчета
-
       - name: Generate Allure Report
         run: allure generate target/allure-results -o target/allure-report
         if: always()
