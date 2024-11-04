@@ -90,6 +90,6 @@ jobs:
       - name: Publish Allure Report
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.newtoken111 }}
+          github_token: ${{ secrets.MY_GITHUB_TOKEN1 }}
           publish_dir: target/allure-report
           publish_branch: gh-pages  # Ветка, на которую будете публиковать
