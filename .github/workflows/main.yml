@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  run-unit-tests:
+  run-tests-manual:
     runs-on: windows-latest
 
     steps:
@@ -71,11 +71,11 @@ jobs:
       - name: Check Allure version
         run: allure --version
 
-#      - name: run all tests
-#        run: mvn test
+      - name: run all tests
+        run: mvn test
 
-      - name: Run tests with TestNG XML
-        run: mvn test -DsuiteXmlFile=testng.xml
+#      - name: Run tests with TestNG XML
+#        run: mvn test -DsuiteXmlFile=testng.xml
 
 #      - name: Allure report
 #        uses: afiore/action-allure-report@v0.1.0
