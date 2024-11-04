@@ -19,13 +19,19 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      - name: Install Scoop
-        run: |
-          Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+      - name: Setup scoop
+        uses: MinoruSekine/setup-scoop@v4
+        with:
+          install_scoop: true                     # Установка scoop
+          scoop_update: true                      # Вызов обновления scoop
+          scoop_checkup: true                     # Вызов проверки состояния scoop
+          update_path: true                       # Обновление переменной PATH для действий
+          buckets: extras                         # Подключение bucket extras для установки Allure
+          apps: allure                            # Установка Allure
 
-      - name: Install Allure
-        run: |
-           scoop install allure
+#      - name: Install Allure
+#        run: |
+#           scoop install allure
 
       - name: Setup Java JDK
         uses: actions/setup-java@v4.5.0
