@@ -75,22 +75,19 @@ jobs:
           chrome-version: 'latest'
           install-chromedriver: true
 
-      # - name: Install Scoop
-      #   run: |
-      #     iwr get.scoop.sh -useb | iex
-
-      # - name: Install Allure
-      #   run: |
-      #     scoop install allure
-
       - name: Set PATH
         run: echo "$GITHUB_PATH" >> $GITHUB_ENV
 
       - name: Check Allure version
         run: allure --version
 
-      - name: run all tests
-        run: mvn test
+#      - name: run all tests
+#        run: mvn test
+
+      - name: Run all tests
+        run: |
+          cd Luma_clothes_ui  # путь к проекту с pom.xml
+          mvn test
 
       - name: Allure report
         uses: afiore/action-allure-report@v0.1.0
