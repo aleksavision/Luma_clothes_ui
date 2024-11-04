@@ -84,10 +84,8 @@ jobs:
 #      - name: run all tests
 #        run: mvn test
 
-      - name: Run all tests
-        run: |
-          cd Luma_clothes_ui  # путь к проекту с pom.xml
-          mvn test
+      - name: Run tests with TestNG XML
+        run: mvn test -DsuiteXmlFile=testng.xml
 
       - name: Allure report
         uses: afiore/action-allure-report@v0.1.0
