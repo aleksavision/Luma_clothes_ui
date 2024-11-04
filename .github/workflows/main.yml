@@ -29,10 +29,6 @@ jobs:
           buckets: extras                         # Подключение bucket extras для установки Allure
           apps: allure                            # Установка Allure
 
-#      - name: Install Allure
-#        run: |
-#           scoop install allure
-
       - name: Setup Java JDK
         uses: actions/setup-java@v4.5.0
         with:
@@ -75,8 +71,8 @@ jobs:
           chrome-version: 'latest'
           install-chromedriver: true
 
-      - name: Set PATH
-        run: echo "$GITHUB_PATH" >> $GITHUB_ENV
+#      - name: Set PATH
+#        run: echo "$GITHUB_PATH" >> $GITHUB_ENV
 
       - name: Check Allure version
         run: allure --version
