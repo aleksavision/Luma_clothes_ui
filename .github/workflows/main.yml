@@ -21,7 +21,7 @@ jobs:
 
       - name: Install Scoop
         run: |
-           iwr get.scoop.sh -useb | iex
+          Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
 
       - name: Install Allure
         run: |
