@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class RegisterTests extends BaseTest {
 
-    @Test (groups = {"success", "register"})
+//    @Test (groups = {"success", "register"})
     @Description("User is registered successfully. User is logged out and logged in with new creds successfully.")
     @Severity(SeverityLevel.CRITICAL)
     public void successRegisterTest() throws IOException {

@@ -81,16 +81,16 @@ jobs:
 #      - name: Run tests with TestNG XML
 #        run: mvn test -DsuiteXmlFile=testng.xml
 
-#      - name: Generate Allure Report
-#        run: allure generate allure-results -o allure-results --clean || echo "Allure report generation failed"
-#        if: always()
+      - name: Generate Allure Report
+        run: allure generate allure-results -o allure-report --clean || echo "Allure report generation failed"
+        if: always()
 
       - name: Upload Allure report as artifact   #сохранить отчеты как артефакты в GitHub Actions
         if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: allure-results
-          path: allure-results
+          name: allure-report
+          path: allure-report
 
 #      - name: Publish Allure Report       # Публикация через сервис GitHub Pages
 #        uses: peaceiris/actions-gh-pages@v4
