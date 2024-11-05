@@ -7,8 +7,8 @@ import tools.PageTools;
 public class Header extends PageTools {
 
     private final By womenMenuButton = By.xpath("//a[@id='ui-id-3']");
-    private final By createAnAccountLink = By.xpath("//a[text()='Create an Account']");
-    private final By userMenuArrow = By.xpath("//button[@data-action='customer-menu-toggle']");
+    private final By createAnAccountLink = By.xpath("//div[@class='panel header']/ul/li/a[text()='Create an Account']");
+    private final By userMenuArrow = By.xpath("//div[@class='panel header']/ul/li/span/button");
     private final By signInLink = By.xpath("//a[contains(text(), 'Sign In')]");
     private final By sighOutLink = By.xpath("//a[contains(text(), 'Sign Out')]");
     private final By cartButton = By.xpath("//a[@class='action showcart active']");
@@ -58,11 +58,7 @@ public class Header extends PageTools {
         return new Homepage();
     }
     private void clickUserMenuArrow(){
-        try {
-            wait(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        waitForElementEnabled(userMenuArrow);
         click(userMenuArrow);
     }
 
