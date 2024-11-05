@@ -57,8 +57,8 @@ public class Header extends PageTools {
         click(logo);
         return new Homepage();
     }
-    private void clickUserMenuArrow(){
-        waitForElementClickable(userMenuArrow);
+    private void clickUserMenuArrow() throws InterruptedException {
+        wait(5000);
         click(userMenuArrow);
     }
 
