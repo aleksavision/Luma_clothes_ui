@@ -26,6 +26,11 @@ public class Homepage extends PageTools {
     public boolean signOutLinkIsDisplayed(){
         return Pages.header().signOutLinkIsDisplayed();
     }
+    @Step("Check if Sign It link isn't displayed")
+    public boolean signInLinkNotDisplayed(){
+        return !Pages.header().signInLinkIsDisplayed();
+    }
+
 
 
 }

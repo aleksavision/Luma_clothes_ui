@@ -10,8 +10,6 @@ import testData.GlobalData;
 import testData.EmailGenerator;
 
 import java.io.IOException;
-import static org.testng.Assert.assertTrue;
-import static pages.Pages.homepage;
 
 public class RegisterTests extends BaseTest {
 
@@ -42,7 +40,7 @@ public class RegisterTests extends BaseTest {
         Pages.loginPage().setEmailInput(email);
         Pages.loginPage().setPasswordInput(GlobalData.validPassword);
         Pages.loginPage().clickSignInButton();
-        softAssert.assertTrue(Pages.homepage().signOutLinkIsDisplayed());
+        softAssert.assertTrue(Pages.homepage().signInLinkNotDisplayed());
         softAssert.assertAll();
     }
 

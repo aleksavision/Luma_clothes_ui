@@ -8,7 +8,7 @@ public class Header extends PageTools {
 
     private final By womenMenuButton = By.xpath("//a[@id='ui-id-3']");
     private final By createAnAccountLink = By.xpath("(//a[text()='Create an Account'])[1]");
-    private final By userMenuArrow = By.xpath("//button[@data-action='customer-menu-toggle'][1]");
+    private final By userMenuArrow = By.xpath("//button[@data-action='customer-menu-toggle']");
     private final By signInLink = By.xpath("//a[contains(text(), 'Sign In')]");
     private final By sighOutLink = By.xpath("//a[contains(text(), 'Sign Out')]");
     private final By cartButton = By.xpath("//a[@class='action showcart active']");
@@ -26,7 +26,7 @@ public class Header extends PageTools {
     }
     @Step("Click Sign Out link in header")
     public void clickSignOutLink(){
-        click(userMenuArrow);
+        clickUserMenuArrow();
         click(sighOutLink);
     }
     @Step("Click Sign In link in header")
@@ -35,8 +35,13 @@ public class Header extends PageTools {
     }
     @Step("Check if Sign Out link is displayed")
     public boolean signOutLinkIsDisplayed(){
-        click(userMenuArrow);
+        clickUserMenuArrow();
         return isElementVisible(sighOutLink);
+    }
+    @Step("Check if Sign In link is displayed")
+    public boolean signInLinkIsDisplayed(){
+        clickUserMenuArrow();
+        return isElementVisible(signInLink);
     }
     @Step("Click Cart button in header")
     public void clickCartButton(){
@@ -49,8 +54,12 @@ public class Header extends PageTools {
     }
     @Step("Click Logo in header")
     public Homepage clickLogo(){
-        click(logo );
+        click(logo);
         return new Homepage();
+    }
+    private void clickUserMenuArrow(){
+        waitForElementClickable(userMenuArrow);
+        click(userMenuArrow);
     }
 
 
