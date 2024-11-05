@@ -57,8 +57,12 @@ public class Header extends PageTools {
         click(logo);
         return new Homepage();
     }
-    private void clickUserMenuArrow() throws InterruptedException {
-        wait(5000);
+    private void clickUserMenuArrow(){
+        try {
+            wait(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         click(userMenuArrow);
     }
 
