@@ -7,7 +7,7 @@ import tools.PageTools;
 public class Header extends PageTools {
 
     private final By womenMenuButton = By.xpath("//a[@id='ui-id-3']");
-    private final By createAnAccountLink = By.xpath("(//a[text()='Create an Account'])[1]");
+    private final By createAnAccountLink = By.xpath("//a[text()='Create an Account']");
     private final By userMenuArrow = By.xpath("//button[@data-action='customer-menu-toggle']");
     private final By signInLink = By.xpath("//a[contains(text(), 'Sign In')]");
     private final By sighOutLink = By.xpath("//a[contains(text(), 'Sign Out')]");
@@ -21,7 +21,7 @@ public class Header extends PageTools {
     }
     @Step("Click Create an Account link in header")
     public void clickCreateAnAccountLink() {
-        waitForElementVisible(createAnAccountLink);
+        waitForElementClickable(createAnAccountLink);
         click(createAnAccountLink);
     }
     @Step("Click Sign Out link in header")
