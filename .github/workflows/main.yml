@@ -33,12 +33,14 @@ jobs:
           distribution: 'temurin'
 
       - name: Cache Java
+        if: always()
         uses: actions/cache@v4
         with:
           path: ~/.sdkman/candidates/java
           key: ${{ runner.os }}-java-${{ hashFiles('**/pom.xml') }}
 
       - name: Cache Maven dependencies
+        if: always()
         uses: actions/cache@v4
         with:
           path: C:/Users/runneradmin/.m2/repository
@@ -47,6 +49,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Cache Chrome
+        if: always()
         uses: actions/cache@v4
         with:
           path: ~/.cache/google-chrome
@@ -55,6 +58,7 @@ jobs:
             ${{ runner.os }}-chrome-
 
       - name: Cache ChromeDriver
+        if: always()
         uses: actions/cache@v4
         with:
           path: ~/.cache/chromedriver
@@ -78,15 +82,15 @@ jobs:
 #        run: mvn test -DsuiteXmlFile=testng.xml
 
       - name: Generate Allure Report
-        run: allure generate target/allure-results -o target/allure-report
+        run: allure generate allure-results -o allure-results || echo "Allure report generation failed"
         if: always()
 
       - name: Upload Allure report as artifact   #сохранить отчеты как артефакты в GitHub Actions
         if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: allure-report
-          path: target/allure-report
+          name: allure-results
+          path: allure-results
 
 #      - name: Publish Allure Report       # Публикация через сервис GitHub Pages
 #        uses: peaceiris/actions-gh-pages@v4
