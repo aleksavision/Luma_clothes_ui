@@ -82,6 +82,7 @@ jobs:
         if: always()
 
       - name: Upload Allure report as artifact   #сохранить отчеты как артефакты в GitHub Actions
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: allure-report
