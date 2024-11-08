@@ -79,7 +79,7 @@ jobs:
 #        run: mvn test
 
       - name: Run tests with TestNG XML
-        run: mvn test -DsuiteXmlFile=src/test/testng.xml
+        run: mvn test -DsuiteXmlFile=src/test/testng
 
       - name: Generate Allure Report
         run: allure generate allure-results -o allure-report --clean || echo "Allure report generation failed"

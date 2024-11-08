@@ -38,6 +38,9 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>testng.xml</suiteXmlFile> <!-- Путь к вашему testng.xml -->
+                    </suiteXmlFiles>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -52,6 +55,9 @@
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.10.0</version>
+                <configuration>
+                    <resultsDirectory>D:/QA/java-practice/Luma_clothes_ui/allure-results</resultsDirectory>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
