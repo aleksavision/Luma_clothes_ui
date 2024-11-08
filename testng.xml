@@ -2,16 +2,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="Success ATC Tests">
-<!--        <groups>-->
-<!--            <run>-->
-<!--                <include name="register"/>-->
-<!--            </run>-->
-<!--        </groups>-->
-        <classes>
-            <class name="tests.ZeroTest"/>
-        </classes>
-    </test>
+<!--    <test verbose="2" preserve-order="true" name="Zero Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.ZeroTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+        <test verbose="2" preserve-order="true" name="All Tests">
+            <packages>
+                <package name="tests"/>
+            </packages>
+        </test>
 </suite>
 
 
