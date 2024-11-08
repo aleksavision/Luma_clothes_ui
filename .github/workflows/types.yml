@@ -5,12 +5,24 @@ on:
     types: ['opened', 'edited', 'reopened']
 
 jobs:
-  pr-lint:
-    runs-on: ubuntu-latest
+  type-run:
+    runs-on: windows-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v2
+        if: always()
+        continue-on-error: true
+
+      - name: Setup scoop
+        uses: MinoruSekine/setup-scoop@v4
+        with:
+          install_scoop: true
+          scoop_update: true
+          scoop_checkup: true
+          update_path: true
+          buckets: extras
+          apps: allure
 
       - name: Setup Java JDK
         uses: actions/setup-java@v4.5.0
@@ -18,6 +30,62 @@ jobs:
           java-version: '22'
           distribution: 'temurin'
 
-      - name: run unit tests
-        run: mvn test
+      - name: Cache Java
+        if: always()
+        uses: actions/cache@v4
+        with:
+          path: ~/.sdkman/candidates/java
+          key: ${{ runner.os }}-java-${{ hashFiles('**/pom.xml') }}
 
+      - name: Cache Maven dependencies
+        if: always()
+        uses: actions/cache@v4
+        with:
+          path: C:/Users/runneradmin/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Cache Chrome
+        if: always()
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/google-chrome
+          key: ${{ runner.os }}-chrome-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-chrome-
+
+      - name: Cache ChromeDriver
+        if: always()
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/chromedriver
+          key: ${{ runner.os }}-chromedriver-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-chromedriver-
+
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 'latest'
+          install-chromedriver: true
+
+      - name: Check Allure version
+        run: allure --version
+
+      #      - name: run all tests
+      #        run: mvn test
+
+      - name: Run tests with TestNG XML
+        run: mvn test -DsuiteXmlFile=src/test/testng
+
+      - name: Generate Allure Report
+        run: allure generate allure-results -o allure-report --clean || echo "Allure report generation failed"
+        if: always()
+
+      - name: Upload Allure report as artifact   #сохранить отчеты как артефакты в GitHub Actions
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: allure-report
