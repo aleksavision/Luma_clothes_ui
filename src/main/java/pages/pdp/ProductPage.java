@@ -21,8 +21,8 @@ public class ProductPage extends PageTools {
 
     private final By addToCartButton = By.xpath("//button[contains(@id, 'addtocart')]");
     private final By shoppingCartLink = By.xpath("//a[text()='shopping cart']");
-    private final By sizeButton = By.xpath("//div[@class='swatch-option text']");
-    private final By colorButton = By.xpath("//div[@class='swatch-option color']");
+    private final By sizeButton = By.xpath("//div[contains(@class, 'swatch-option text')]");
+    private final By colorButton = By.xpath("//div[contains(@class, 'swatch-option color')]");
     private final By priceInfo = By.xpath("//span[@itemprop='offers']//span[@class='price']");
     private final By minPriceInfo = By.xpath("//span[@data-price-type='minPrice']//span[@class='price']");
     private final By maxPriceInfo = By.xpath("//span[@data-price-type='maxPrice']//span[@class='price']");
@@ -157,10 +157,27 @@ public class ProductPage extends PageTools {
     public String getPageError(){
         return getElementText(pageErrorMessage );
     }
-
-
-
-
-
+    @Step("Get Product name text")
+    public String getProductName(){
+        return getElementText(productName);
+    }
+    @Step("Get Product price value")
+    public String getProductPrice(){
+        return getElementText(priceInfo);
+    }
+    @Step("Get item qty value")
+    public String getItemQty(){
+        return getElementAttributeValue("value", qtyInput);
+    }
+    @Step("Get selected Size value")
+    public String getSelectedSize(){
+        if ((getElementAttributeValue("aria-checked", sizeButton).equals("true"))){
+        } return getElementAttributeValue("option-label", sizeButton);
+    }
+    @Step("Get selected Color value")
+    public String getSelectedColor(){
+        if ((getElementAttributeValue("aria-checked", colorButton).equals("true"))){
+        } return getElementAttributeValue("option-label", colorButton);
+    }
 
 }

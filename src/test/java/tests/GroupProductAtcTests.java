@@ -39,9 +39,9 @@ public class GroupProductAtcTests extends BaseTest {
         Pages.productPage().setQtyInputGroupItem(3, itemQty);
         Pages.productPage().clickAddToCartButton();
         Pages.productPage().clickShoppingCartLink();
-        assertEquals(Pages.shoppingCartPage().getAnyItemQty(1), itemQty);
-        assertEquals(Pages.shoppingCartPage().getAnyItemQty(2), itemQty);
-        assertEquals(Pages.shoppingCartPage().getAnyItemQty(3), itemQty);
+        assertEquals(Pages.shoppingCartPage().getItemByIndexQty(1), itemQty);
+        assertEquals(Pages.shoppingCartPage().getItemByIndexQty(2), itemQty);
+        assertEquals(Pages.shoppingCartPage().getItemByIndexQty(3), itemQty);
     }
 
     @Test(groups = {"success", "addToCart"})

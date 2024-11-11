@@ -5,6 +5,7 @@ import pages.carts.CheckoutShippingPage;
 import pages.carts.CheckoutSuccessPage;
 import pages.carts.ShoppingCartPage;
 import pages.pdp.ProductPage;
+import pages.plp.JacketsPage;
 import pages.plp.TopsPage;
 import pages.plp.WomenPage;
 import pages.userPages.LoginPage;
@@ -27,6 +28,7 @@ public class Pages {
     private static SuccessLogoutPage successLogoutPage;
     private static TopsPage topsPage;
     private static WomenPage womenPage;
+    private static JacketsPage jacketsPage;
 
     public static Homepage homepage(){
         if(homepage == null){
@@ -106,5 +108,12 @@ public class Pages {
         }
         return womenPage;
     }
+    public static JacketsPage jacketsPage(){
+        if(jacketsPage == null){
+            jacketsPage = new JacketsPage();
+        }
+        return jacketsPage;
+    }
+
 
 }

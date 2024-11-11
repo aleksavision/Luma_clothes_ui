@@ -288,6 +288,13 @@ public class PageTools {
         return element.is(Condition.visible);
     }
 
+    protected void moveToElement(By by, Object... args) {
+        InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(by, args));
+        SelenideElement element = $(byLocator(by, args));
+        Selenide.actions().moveToElement(element.shouldBe(visible)).perform();
+        sleep(500);
+    }
+
 
 
 }

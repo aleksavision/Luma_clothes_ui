@@ -10,6 +10,7 @@ public class WomenPage extends PageTools {
     private final By bottomsLink = By.xpath("//a[text()='Bottoms']");
     private final By testLink = By.xpath("//a[text()='Test']");
 
+
     @Step("Click Tops link")
     public TopsPage clickTopsLink() {
         click(topsLink);

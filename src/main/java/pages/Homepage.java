@@ -1,6 +1,7 @@
 package pages;
 
 import io.qameta.allure.Step;
+import pages.plp.JacketsPage;
 import pages.plp.WomenPage;
 import pages.userPages.RegisterPage;
 import pages.userPages.LoginPage;
@@ -29,6 +30,11 @@ public class Homepage extends PageTools {
     @Step("Check if Sign It link isn't displayed")
     public boolean signInLinkNotDisplayed(){
         return !Pages.header().signInLinkIsDisplayed();
+    }
+    @Step("Click Jackets menu button")
+    public JacketsPage clickJacketsMenuButton(){
+        Pages.header().clickJacketsMenuButton();
+        return new JacketsPage();
     }
 
 
