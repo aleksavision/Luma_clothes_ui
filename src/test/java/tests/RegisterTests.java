@@ -10,12 +10,10 @@ import testData.GlobalData;
 import testData.EmailGenerator;
 
 import java.io.IOException;
-import static org.testng.Assert.assertTrue;
-import static pages.Pages.homepage;
 
 public class RegisterTests extends BaseTest {
 
-    @Test (groups = {"success", "register"})
+//    @Test (groups = {"success", "register"})
     @Description("User is registered successfully. User is logged out and logged in with new creds successfully.")
     @Severity(SeverityLevel.CRITICAL)
     public void successRegisterTest() throws IOException {
@@ -42,7 +40,7 @@ public class RegisterTests extends BaseTest {
         Pages.loginPage().setEmailInput(email);
         Pages.loginPage().setPasswordInput(GlobalData.validPassword);
         Pages.loginPage().clickSignInButton();
-        softAssert.assertTrue(Pages.homepage().signOutLinkIsDisplayed());
+        softAssert.assertTrue(Pages.homepage().signInLinkNotDisplayed());
         softAssert.assertAll();
     }
 

@@ -106,6 +106,6 @@ public class SingleProductAtcTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    
+
 
 }
