@@ -1,5 +1,7 @@
 package actions;
 
+import pages.userPages.MyWishListPage;
+
 public class Actions {
 
     private static HomePageActions homePageActions;
@@ -14,6 +16,7 @@ public class Actions {
     private static SuccessLogoutPageActions successLogoutPageActions;
     private static TopsPageActions topsPageActions;
     private static WomenPageActions womenPageActions;
+    private static MyWishListPage myWishListPage;
 
     public HomePageActions homePageActions(){
         if(homePageActions == null){
@@ -88,6 +91,12 @@ public class Actions {
             womenPageActions = new WomenPageActions();
         }
         return womenPageActions;
+    }
+    public MyWishListPage myWishListPage(){
+        if(myWishListPage == null){
+            myWishListPage = new MyWishListPage();
+        }
+        return myWishListPage;
     }
 
 

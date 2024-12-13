@@ -8,12 +8,16 @@ import org.testng.annotations.Test;
 import pages.Pages;
 import testData.GlobalData;
 import testData.EmailGenerator;
+import testData.TestDataProviders;
 
 import java.io.IOException;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 public class RegisterTests extends BaseTest {
 
-//    @Test (groups = {"success", "register"})
+    @Test (groups = {"success", "register"})
     @Description("User is registered successfully. User is logged out and logged in with new creds successfully.")
     @Severity(SeverityLevel.CRITICAL)
     public void successRegisterTest() throws IOException {
@@ -29,10 +33,10 @@ public class RegisterTests extends BaseTest {
         Pages.registerPage().setPasswordInput(GlobalData.validPassword);
         Pages.registerPage().setConfirmPasswordInput(GlobalData.validPassword);
         Pages.registerPage().clickCreateAnAccountButton();
-        softAssert.assertEquals(Pages.myAccountPage().getSuccessRegisterMessage(),GlobalData.successRegisterMessage);
+        assertEquals(Pages.myAccountPage().getSuccessRegisterMessage(),GlobalData.successRegisterMessage);
 
         Pages.myAccountPage().clickSignOutLink();
-        softAssert.assertEquals(Pages.successLogoutPage().getSuccessMessage(), GlobalData.successLogOutMessage);
+        assertEquals(Pages.successLogoutPage().getSuccessMessage(), GlobalData.successLogOutMessage);
 
         Pages.homepage().clickSignInLink();
         Pages.loginPage().mainElementsIsDisplayedAsserts();
@@ -40,146 +44,50 @@ public class RegisterTests extends BaseTest {
         Pages.loginPage().setEmailInput(email);
         Pages.loginPage().setPasswordInput(GlobalData.validPassword);
         Pages.loginPage().clickSignInButton();
-        softAssert.assertTrue(Pages.homepage().signInLinkNotDisplayed());
-        softAssert.assertAll();
+        assertTrue(Pages.homepage().signInLinkNotDisplayed());
+        assertEquals(Pages.header().getGreetingInfo(), GlobalData.greetingInfo(GlobalData.firstName, GlobalData.lastName));
     }
 
-    @Test (groups = {"unsuccess", "register"})
-    @Description("Empty form is applied. User isn't registered")
+    @Test (groups = {"unsuccess", "register"}, dataProvider = "invalidRegisterData", dataProviderClass = TestDataProviders.class)
+    @Description("Form is filled with invalid data. User isn't registered. Error is displayed")
     @Severity(SeverityLevel.NORMAL)
-    public void emptyRegisterForm(){
+    public void invalidRegisterTests(String firstName, String lastName, String email, String password, String confirmPass, String expectedError, String errorMethod){
         start(GlobalData.mainURL);
 
         Pages.homepage().clickCreateAnAccountLink();
         Pages.registerPage().allFieldsCtaAsserts();
 
-        Pages.registerPage().clickCreateAnAccountButton();
-        softAssert.assertEquals(Pages.registerPage().getFirstNameErrorMessage(), GlobalData.requiredFieldError);
-        softAssert.assertEquals(Pages.registerPage().getLastNameErrorMessage(), GlobalData.requiredFieldError);
-        softAssert.assertEquals(Pages.registerPage().getEmailErrorMessage(), GlobalData.requiredFieldError);
-        softAssert.assertEquals(Pages.registerPage().getPasswordErrorMessage(), GlobalData.requiredFieldError);
-        softAssert.assertEquals(Pages.registerPage().getConfirmPasswordErrorMessage(), GlobalData.requiredFieldError);
-        softAssert.assertAll();
-    }
-
-    @Test (groups = {"unsuccess", "register"})
-    @Description("Form with invalid email is applied. User isn't registered")
-    @Severity(SeverityLevel.NORMAL)
-    public void invalidEmail() {
-        start(GlobalData.mainURL);
-
-        Pages.homepage().clickCreateAnAccountLink();
-        Pages.registerPage().allFieldsCtaAsserts();
-
-        Pages.registerPage().setFirstNameInput(GlobalData.firstName);
-        Pages.registerPage().setLastNameInput(GlobalData.lastName);
-        Pages.registerPage().setEmailInput(GlobalData.invalidEmail);
-        Pages.registerPage().setPasswordInput(GlobalData.validPassword);
-        Pages.registerPage().setConfirmPasswordInput(GlobalData.validPassword);
-        Pages.registerPage().clickCreateAnAccountButton();
-        softAssert.assertEquals(Pages.registerPage().getEmailErrorMessage(), GlobalData.invalidEmailError);
-        softAssert.assertAll();
-    }
-
-    @Test (groups = {"unsuccess", "register"})
-    @Description("Form with invalid Confirm Password is applied. User isn't registered")
-    @Severity(SeverityLevel.NORMAL)
-    public void invalidConfirmPassword() throws IOException {
-        start(GlobalData.mainURL);
-        String email = new EmailGenerator().generateUniqueEmail();
-
-        Pages.homepage().clickCreateAnAccountLink();
-        Pages.registerPage().allFieldsCtaAsserts();
-
-        Pages.registerPage().setFirstNameInput(GlobalData.firstName);
-        Pages.registerPage().setLastNameInput(GlobalData.lastName);
+        Pages.registerPage().setFirstNameInput(firstName);
+        Pages.registerPage().setLastNameInput(lastName);
         Pages.registerPage().setEmailInput(email);
-        Pages.registerPage().setPasswordInput(GlobalData.validPassword);
-        Pages.registerPage().setConfirmPasswordInput(GlobalData.validPassword + "1");
+        Pages.registerPage().setPasswordInput(password);
+        Pages.registerPage().setConfirmPasswordInput(confirmPass);
         Pages.registerPage().clickCreateAnAccountButton();
-        softAssert.assertEquals(Pages.registerPage().getConfirmPasswordErrorMessage(), GlobalData.invalidConfirmPasswordError);
-        softAssert.assertAll();
+
+        assertEquals(getErrorUsingMethod(errorMethod), expectedError);
     }
 
-    @Test (groups = {"unsuccess", "register"})
-    @Description("Password with 7 or less symbols is entered. Form is applied. User isn't registered")
-    @Severity(SeverityLevel.NORMAL)
-    public void tooShortPassword() throws IOException {
-        start(GlobalData.mainURL);
-        String email = new EmailGenerator().generateUniqueEmail();
 
-        Pages.homepage().clickCreateAnAccountLink();
-        Pages.registerPage().allFieldsCtaAsserts();
 
-        Pages.registerPage().setFirstNameInput(GlobalData.firstName);
-        Pages.registerPage().setLastNameInput(GlobalData.lastName);
-        Pages.registerPage().setEmailInput(email);
-        Pages.registerPage().setPasswordInput(GlobalData.sevenSymbolsPassword);
-        Pages.registerPage().setConfirmPasswordInput(GlobalData.sevenSymbolsPassword);
-        Pages.registerPage().clickCreateAnAccountButton();
-        softAssert.assertEquals(Pages.registerPage().getPasswordErrorMessage(), GlobalData.tooShortPasswordError);
-        softAssert.assertAll();
+
+
+    private String getErrorUsingMethod(String errorMethod) {
+        switch (errorMethod) {
+            case "getFirstNameFieldError":
+                return Pages.registerPage().getFirstNameErrorMessage();
+            case "getLastNameFieldError":
+                return Pages.registerPage().getLastNameErrorMessage();
+            case "getEmailFieldError":
+                return Pages.registerPage().getEmailErrorMessage();
+            case "getPasswordFieldError":
+                return Pages.registerPage().getPasswordErrorMessage();
+            case "getConfirmPasswordFieldError":
+                return Pages.registerPage().getConfirmPasswordErrorMessage();
+            default:
+                throw new IllegalArgumentException("Unknown error method: " + errorMethod);
+        }
     }
 
-    @Test (groups = {"unsuccess", "register"})
-    @Description("Password with no letter is entered. Form is applied. User isn't registered")
-    @Severity(SeverityLevel.NORMAL)
-    public void noLetterPassword() throws IOException {
-        start(GlobalData.mainURL);
-        String email = new EmailGenerator().generateUniqueEmail();
-
-        Pages.homepage().clickCreateAnAccountLink();
-        Pages.registerPage().allFieldsCtaAsserts();
-
-        Pages.registerPage().setFirstNameInput(GlobalData.firstName);
-        Pages.registerPage().setLastNameInput(GlobalData.lastName);
-        Pages.registerPage().setEmailInput(email);
-        Pages.registerPage().setPasswordInput(GlobalData.noLetterPassword);
-        Pages.registerPage().setConfirmPasswordInput(GlobalData.noLetterPassword);
-        Pages.registerPage().clickCreateAnAccountButton();
-        softAssert.assertEquals(Pages.registerPage().getPasswordErrorMessage(), GlobalData.noLetterOrSymbolOrDigitPasswordError);
-        softAssert.assertAll();
-    }
-
-    @Test (groups = {"unsuccess", "register"})
-    @Description("Password with no digit is entered. Form is applied. User isn't registered")
-    @Severity(SeverityLevel.NORMAL)
-    public void noDigitPassword() throws IOException {
-        start(GlobalData.mainURL);
-        String email = new EmailGenerator().generateUniqueEmail();
-
-        Pages.homepage().clickCreateAnAccountLink();
-        Pages.registerPage().allFieldsCtaAsserts();
-
-        Pages.registerPage().setFirstNameInput(GlobalData.firstName);
-        Pages.registerPage().setLastNameInput(GlobalData.lastName);
-        Pages.registerPage().setEmailInput(email);
-        Pages.registerPage().setPasswordInput(GlobalData.noDigitPassword);
-        Pages.registerPage().setConfirmPasswordInput(GlobalData.noDigitPassword);
-        Pages.registerPage().clickCreateAnAccountButton();
-        softAssert.assertEquals(Pages.registerPage().getPasswordErrorMessage(), GlobalData.noLetterOrSymbolOrDigitPasswordError);
-        softAssert.assertAll();
-    }
-
-    @Test (groups = {"unsuccess", "register"})
-    @Description("Password with no letter is entered. Form is applied. User isn't registered")
-    @Severity(SeverityLevel.NORMAL)
-    public void noSpecificSymbolPassword() throws IOException {
-        start(GlobalData.mainURL);
-        String email = new EmailGenerator().generateUniqueEmail();
-
-        Pages.homepage().clickCreateAnAccountLink();
-        Pages.registerPage().allFieldsCtaAsserts();
-
-        Pages.registerPage().setFirstNameInput(GlobalData.firstName);
-        Pages.registerPage().setLastNameInput(GlobalData.lastName);
-        Pages.registerPage().setEmailInput(email);
-        Pages.registerPage().setPasswordInput(GlobalData.noSpecificSymbolPassword);
-        Pages.registerPage().setConfirmPasswordInput(GlobalData.noSpecificSymbolPassword);
-        Pages.registerPage().clickCreateAnAccountButton();
-        softAssert.assertEquals(Pages.registerPage().getPasswordErrorMessage(), GlobalData.noLetterOrSymbolOrDigitPasswordError);
-        softAssert.assertAll();
-    }
 
 
 }

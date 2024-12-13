@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;
+import pages.pdp.ProductPage;
 
 import java.io.File;
 import java.time.Duration;
@@ -275,13 +276,6 @@ public class PageTools {
         input.shouldBe(Condition.visible).sendKeys(text);
     }
 
-
-    protected void jsIsElementByParentVisible(By byParent, Object... args) {
-        InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(byParent, args));
-        Selenide.executeJavaScript("return window.getComputedStyle(arguments[0], '::after').getPropertyValue('display');",
-                $(byLocator(byParent, args)));
-    }
-
     protected boolean isElementInFieldsetVisible(By fieldset, By by, Object... args) {
         InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(by, args));
         SelenideElement element = $(fieldset).$(byLocator(by, args));
@@ -294,6 +288,86 @@ public class PageTools {
         Selenide.actions().moveToElement(element.shouldBe(visible)).perform();
         sleep(500);
     }
+    protected void jsSetAttribute(By fieldset, String attributeName, String value, By by, Object... args) {
+        InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(by, args));
+        SelenideElement element = $(fieldset).$(by);
+        Selenide.executeJavaScript("arguments[0].setAttribute(arguments[1], arguments[2]);", element.shouldBe(visible), attributeName, value);
+    }
+
+
+
+    ///By index
+    /**
+     *
+     * @param index Started from 1
+     */
+    protected void clickElementByIndex(By by, int index, Object... args){
+        InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(by, args));
+        By locator = By.id(("(" + byLocator(by, args) + ")[" + index + "]"));
+        click(locator);
+        }
+    /**
+     *
+     * @param index Started from 1
+     */
+    protected String getElementTextByIndex(By by, int index, Object... args) {
+        InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(by, args));
+        By locator = By.id(("(" + byLocator(by, args) + ")[" + index + "]"));
+        return getElementText(locator);
+    }
+    /**
+     *
+     * @param index Started from 1
+     */
+    protected void jsTypeByIndex(String text, int index, By by, Object... args){
+        InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(by, args));
+        By locator = By.id(("(" + byLocator(by, args) + ")[" + index + "]"));
+        jsType(text, locator);
+    }
+    /**
+     *
+     * @param index Started from 1
+     */
+    protected void jsSetAttributeValueByIndex(String text, int index, By by, Object... args) {
+        InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(by, args));
+        By locator = By.id(("(" + byLocator(by, args) + ")[" + index + "]"));
+        jsSetAttributeValue(text, locator);
+    }
+    /**
+     *
+     * @param index Started from 1
+     */
+    protected String getElementAttributeValueByIndex(String attr, int index, By by, Object... args) {
+        InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(by, args));
+        By locator = By.id(("(" + byLocator(by, args) + ")[" + index + "]"));
+        return getElementAttributeValue(attr, locator);
+    }
+    /**
+     *
+     * @param index Started from 1
+     */
+    protected void waitForElementHasUntilByIndex(By by, int index, String text, long seconds, Object... args) {
+        InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(by, args));
+        By locator = By.id("(" + byLocator(by, args) + ")[" + index + "]");
+        $(byLocator(locator)).shouldBe(Condition.visible).shouldHave(Condition.text(text), Duration.ofSeconds(seconds));
+    }
+    /**
+     *
+     * @param index Started from 1
+     */
+    protected void moveToElementByIndex(By by, int index, Object... args) {
+        InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(by, args));
+        By locator = By.id("(" + byLocator(by, args) + ")[" + index + "]");
+        SelenideElement element = $(locator);
+        Selenide.actions().moveToElement(element.shouldBe(visible)).perform();
+        sleep(500);
+    }
+
+
+
+
+
+
 
 
 

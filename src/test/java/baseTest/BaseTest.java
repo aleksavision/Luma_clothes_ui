@@ -52,13 +52,14 @@ public class BaseTest extends BrowserFactory {
             InfoLogger.logInfo("URL is not set. Please use setUrl() method to set the URL before opening the browser.");
         }
     }
-    @AfterMethod
+
     protected void  cleanWebsiteData(){
         Selenide.clearBrowserLocalStorage();
         Selenide.clearBrowserCookies();
     }
     @AfterTest
     protected void closeBrowser(ITestContext context) {
+        cleanWebsiteData();
         WebDriverRunner.closeWebDriver();
     }
 }

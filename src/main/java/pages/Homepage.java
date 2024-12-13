@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
 import pages.plp.JacketsPage;
 import pages.plp.WomenPage;
@@ -31,10 +32,19 @@ public class Homepage extends PageTools {
     public boolean signInLinkNotDisplayed(){
         return !Pages.header().signInLinkIsDisplayed();
     }
-    @Step("Click Jackets menu button")
-    public JacketsPage clickJacketsMenuButton(){
-        Pages.header().clickJacketsMenuButton();
+    @Step("Click Women's Jackets menu button")
+    public JacketsPage clickWomenJacketsMenuButton(){
+        Pages.header().clickWomenJacketsMenuButton();
         return new JacketsPage();
+    }
+    @Step("Click Men's Jackets menu button")
+    public JacketsPage clickMenJacketsMenuButton(){
+        Pages.header().clickMenJacketsMenuButton();
+        return new JacketsPage();
+    }
+    @Step("Get page URL address")
+    public String getPageUrl(){
+        return Selenide.webdriver().driver().url();
     }
 
 

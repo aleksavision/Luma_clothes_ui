@@ -7,9 +7,9 @@
                 <package name="tests"/>
             </packages>
         </test>
-<!--    <test verbose="2" preserve-order="true" name="Zero Tests">-->
+<!--    <test verbose="2" preserve-order="true" name="Login Tests">-->
 <!--        <classes>-->
-<!--            <class name="tests.ZeroTest"/>-->
+<!--            <class name="tests.LoginTests"/>-->
 <!--        </classes>-->
 <!--    </test>-->
 </suite>

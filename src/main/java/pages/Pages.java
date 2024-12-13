@@ -6,12 +6,10 @@ import pages.carts.CheckoutSuccessPage;
 import pages.carts.ShoppingCartPage;
 import pages.pdp.ProductPage;
 import pages.plp.JacketsPage;
+import pages.plp.ShortsPage;
 import pages.plp.TopsPage;
 import pages.plp.WomenPage;
-import pages.userPages.LoginPage;
-import pages.userPages.MyAccountPage;
-import pages.userPages.RegisterPage;
-import pages.userPages.SuccessLogoutPage;
+import pages.userPages.*;
 
 public class Pages {
 
@@ -29,6 +27,9 @@ public class Pages {
     private static TopsPage topsPage;
     private static WomenPage womenPage;
     private static JacketsPage jacketsPage;
+    private static MyWishListPage myWishListPage;
+    private static CompareProductsPage compareProductsPage;
+    private static ShortsPage shortsPage;
 
     public static Homepage homepage(){
         if(homepage == null){
@@ -114,6 +115,26 @@ public class Pages {
         }
         return jacketsPage;
     }
+    public static MyWishListPage myWishListPage(){
+        if(myWishListPage == null){
+            myWishListPage = new MyWishListPage();
+        }
+        return myWishListPage;
+    }
+    public static CompareProductsPage compareProductsPage(){
+        if(compareProductsPage == null){
+            compareProductsPage = new CompareProductsPage();
+        }
+        return compareProductsPage;
+    }
+    public static ShortsPage shortsPage(){
+        if(shortsPage == null){
+            shortsPage = new ShortsPage();
+        }
+        return shortsPage;
+    }
+
+
 
 
 }

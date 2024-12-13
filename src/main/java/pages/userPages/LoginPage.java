@@ -1,10 +1,12 @@
 package pages.userPages;
 
+import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.Homepage;
 import tools.PageTools;
 
+import static com.codeborne.selenide.Selenide.$;
 import static org.testng.Assert.assertTrue;
 
 public class LoginPage extends PageTools {
@@ -19,6 +21,9 @@ public class LoginPage extends PageTools {
     private final By createAnAccountButton = By.xpath("//a[@class='action create primary']");
     private final By emailFieldError = By.xpath(".//div[@for='email']");
     private final By passwordFieldError = By.xpath(".//div[@for='pass']");
+    private final By errorMessage = By.xpath("//div[@class='message-error error message']/div");
+    private final By reloadCaptchaButton = By.xpath(".//div[@class='control captcha-image']/button");
+    private final By captchaInput = By.xpath( ".//input[@name='captcha[user_login]']");
 
     @Step ("Fill Email field with {email}")
     public void setEmailInput(String email){
@@ -32,6 +37,11 @@ public class LoginPage extends PageTools {
     public Homepage clickSignInButton(){
         click(signInButton);
         return new Homepage();
+    }
+    @Step ("Click Sign in button")
+    public MyWishListPage clickSignInButtonToWishlist(){
+        click(signInButton);
+        return new MyWishListPage();
     }
     @Step ("Check if Email label is displayed")
     public boolean emailLabelIsDisplayed(){
@@ -74,5 +84,12 @@ public class LoginPage extends PageTools {
         assertTrue(isElementInFieldsetVisible(fieldset, signInButton));
         assertTrue(createAnAccountButtonIsDisplayed());
     }
-
+    @Step("Get error info message text")
+    public String getErrorMessageText(){
+        return getElementText(errorMessage);
+    }
+    @Step("Clear Email input")
+    public void clearEmailInput(){
+       clearText(emailInput);
+    }
 }
