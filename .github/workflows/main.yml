@@ -16,15 +16,15 @@ jobs:
         if: always()
         continue-on-error: true
 
-      - name: Install Allure on Windows
-        if: ${{ github.event.inputs.os == 'windows-latest' }}
-        shell: bash
-        run: |
-          curl -o allure-2.22.0.zip -L https://github.com/allure-framework/allure2/releases/download/2.22.0/allure-2.22.0.zip
-          unzip allure-2.22.0.zip
-          mkdir -p C:\allure
-          mv allure-2.22.0 C:\allure\allure
-          echo "C:\allure\allure\bin" >> $GITHUB_PATH
+      - name: Setup scoop
+        uses: MinoruSekine/setup-scoop@v4
+        with:
+          install_scoop: true                     # Установка scoop
+          scoop_update: true                      # Вызов обновления scoop
+          scoop_checkup: true                     # Вызов проверки состояния scoop
+          update_path: true                       # Обновление переменной PATH для действий
+          buckets: extras                         # Подключение bucket extras для установки Allure
+          apps: allure                            # Установка Allure
 
       - name: Setup Java JDK
         uses: actions/setup-java@v4.5.0
