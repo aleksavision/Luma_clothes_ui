@@ -2,21 +2,12 @@ name: run all tests
 
 on:
   push:
-    branches:
-      'manual'
-  workflow_dispatch:
-    inputs:
-      os:
-        type: choice
-        required: true
-        description: 'Operating System'
-        default: 'windows-latest'
-
-      browser:
-        type: choice
-        required: true
-        description: 'Browser'
-        default: 'chrome'
+inputs:
+  os:
+    type: choice
+    required: true
+    description: 'Operating System'
+    default: 'windows-latest'
 
 
 jobs:
