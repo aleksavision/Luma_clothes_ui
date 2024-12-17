@@ -2,16 +2,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="All Test Suite">
-        <test verbose="2" preserve-order="true" name="All Tests">
-            <packages>
-                <package name="tests"/>
-            </packages>
-        </test>
-<!--    <test verbose="2" preserve-order="true" name="Login Tests">-->
-<!--        <classes>-->
-<!--            <class name="tests.LoginTests"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+<!--        <test verbose="2" preserve-order="true" name="All Tests">-->
+<!--            <packages>-->
+<!--                <package name="tests"/>-->
+<!--            </packages>-->
+<!--        </test>-->
+    <test verbose="2" preserve-order="true" name="Login Tests">
+        <classes>
+            <class name="tests.LoginTests"/>
+        </classes>
+    </test>
 </suite>
 
 
