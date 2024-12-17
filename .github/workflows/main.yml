@@ -2,17 +2,13 @@ name: run all tests
 
 on:
   push:
-    inputs:
-      os:
-        type: choice
-        required: true
-        description: 'Operating System'
-        default: 'windows-latest'
-
+    branches:
+      'manual'
+  workflow_dispatch:
 
 jobs:
-  BUILD:
-    runs-on: ${{ github.event.inputs.os }}
+  run-tests-manual:
+    runs-on: windows-latest
 
     steps:
       - name: Checkout
