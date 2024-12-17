@@ -1,0 +1,113 @@
+name: run all tests
+
+on:
+  push:
+    branches:
+      'manual'
+  workflow_dispatch:
+    inputs:
+      os:
+        type: choice
+        required: true
+        description: 'Operating System'
+        default: 'windows-latest'
+
+      browser:
+        type: choice
+        required: true
+        description: 'Browser'
+        default: 'chrome'
+
+
+jobs:
+  BUILD:
+    runs-on: ${{ github.event.inputs.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        if: always()
+        continue-on-error: true
+
+      - name: Install Allure on Windows
+        if: ${{ github.event.inputs.os == 'windows-latest' }}
+        shell: bash
+        run: |
+          curl -o allure-2.22.0.zip -L https://github.com/allure-framework/allure2/releases/download/2.22.0/allure-2.22.0.zip
+          unzip allure-2.22.0.zip
+          mkdir -p C:\allure
+          mv allure-2.22.0 C:\allure\allure
+          echo "C:\allure\allure\bin" >> $GITHUB_PATH
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.5.0
+        with:
+          java-version: '22'
+          distribution: 'temurin'
+
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 'latest'
+          install-chromedriver: true
+
+      - name: Cache Maven dependencies
+        if: always()
+        uses: actions/cache@v4
+        with:
+          path: C:/Users/runneradmin/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Cache Java
+        if: always()
+        uses: actions/cache@v4
+        with:
+          path: ~/.sdkman/candidates/java
+          key: ${{ runner.os }}-java-${{ hashFiles('**/pom.xml') }}
+
+      - name: Cache Chrome
+        if: always()
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/google-chrome
+          key: ${{ runner.os }}-chrome-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-chrome-
+
+      - name: Cache ChromeDriver
+        if: always()
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/chromedriver
+          key: ${{ runner.os }}-chromedriver-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-chromedriver-
+
+      - name: Check Allure version
+        run: allure --version
+
+#      - name: run all tests
+#        run: mvn test
+
+      - name: Run tests with TestNG XML
+        run: mvn test -DsuiteXmlFile=src/test/testng
+
+      - name: Generate Allure Report
+        run: allure generate allure-results -o allure-report --clean || echo "Allure report generation failed"
+        if: always()
+
+      - name: Upload Allure report as artifact   #сохранить отчеты как артефакты в GitHub Actions
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: allure-report
+
+#      - name: Publish Allure Report       # Публикация через сервис GitHub Pages
+#        uses: peaceiris/actions-gh-pages@v4
+#        with:
+#          github_token: ${{ secrets.MY_GITHUB_TOKEN1 }}
+#          publish_dir: target/allure-report
+#          publish_branch: gh-pages  # Ветка, на которую будете публиковать
