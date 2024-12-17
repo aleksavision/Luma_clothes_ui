@@ -2,12 +2,12 @@ name: run all tests
 
 on:
   push:
-inputs:
-  os:
-    type: choice
-    required: true
-    description: 'Operating System'
-    default: 'windows-latest'
+    inputs:
+      os:
+        type: choice
+        required: true
+        description: 'Operating System'
+        default: 'windows-latest'
 
 
 jobs:
