@@ -26,20 +26,20 @@ public class CreateOrderTests extends BaseTest {
         Pages.homepage().clickWomenMenuButton().clickTopsLink().clickProductCardByIndex(1);
         Pages.productPage().mainElementsIsDisplayedAsserts();
 
-        Pages.productPage().selectSize();
+        Pages.productPage().selectSizeByIndex(2);
         Pages.productPage().selectColor();
         Pages.productPage().clickAddToCartButton();
         assertEquals(Pages.productPage().getSuccessMessage(), GlobalData.successATCMessage(Pages.productPage().getProductName()));
 
-        Map<String, String> data = new HashMap<>();
-        data.put("Name", Pages.productPage().getProductName());
-        data.put("Size", Pages.productPage().getSelectedSize());
-        data.put("Color", Pages.productPage().getSelectedColor());
-        data.put("Price", Pages.productPage().getProductPrice());
+        Map<String, String> itemData = new HashMap<>();
+        itemData.put("Name", Pages.productPage().getProductName());
+        itemData.put("Size", Pages.productPage().getSelectedSize());
+        itemData.put("Color", Pages.productPage().getSelectedColor());
+        itemData.put("Price", Pages.productPage().getProductPrice());
 
         Pages.productPage().clickShoppingCartLink();
-        assertEquals(Pages.shoppingCartPage().getItemPrice(), data.get("Price"));
-        assertEquals(Pages.shoppingCartPage().getItemSubtotal(), data.get("Price"));
+        assertEquals(Pages.shoppingCartPage().getItemPrice(), itemData.get("Price"));
+        assertEquals(Pages.shoppingCartPage().getItemSubtotal(), itemData.get("Price"));
 
         Pages.shoppingCartPage().clickProceedToCheckoutButton();
 
@@ -56,28 +56,29 @@ public class CreateOrderTests extends BaseTest {
         String selectedShippingMethod = Pages.checkoutShippingPage().getSelectedShippingMethod();
 
         Pages.checkoutShippingPage().clickOpenOrderSummaryButton();
-        assertEquals(Pages.checkoutShippingPage().getItemNameByIndex(1), data.get("Name"));
-        assertEquals(Pages.checkoutShippingPage().getItemPriceByIndex(1), data.get("Price"));
+        assertEquals(Pages.checkoutShippingPage().getItemNameByIndex(1), itemData.get("Name"));
+        assertEquals(Pages.checkoutShippingPage().getItemPriceByIndex(1), itemData.get("Price"));
         Pages.checkoutShippingPage().clickViewDetailsLink();
-        assertEquals(Pages.checkoutShippingPage().getItemSizeByIndex(1), data.get("Size"));
-        assertEquals(Pages.checkoutShippingPage().getItemColorByIndex(1), data.get("Color"));
+        assertEquals(Pages.checkoutShippingPage().getItemSizeByIndex(1), itemData.get("Size"));
+        assertEquals(Pages.checkoutShippingPage().getItemColorByIndex(1), itemData.get("Color"));
 
         Pages.checkoutShippingPage().clickNextButton();
         assertEquals(Pages.checkoutPaymentPage().getOrderTotal(), "$39.00");
-        assertEquals(Pages.checkoutPaymentPage().getItemNameByIndex(1), data.get("Name"));
-        assertEquals(Pages.checkoutPaymentPage().getItemPriceByIndex(1), data.get("Price"));
+        assertEquals(Pages.checkoutPaymentPage().getItemNameByIndex(1), itemData.get("Name"));
+        assertEquals(Pages.checkoutPaymentPage().getItemPriceByIndex(1), itemData.get("Price"));
         Pages.checkoutPaymentPage().clickViewDetailsLink();
-        assertEquals(Pages.checkoutPaymentPage().getItemSizeByIndex(1), data.get("Size"));
-        assertEquals(Pages.checkoutPaymentPage().getItemColorByIndex(1), data.get("Color"));
-        assertTrue(Pages.checkoutPaymentPage().getShipToInfoBoxText().contains(GlobalData.firstName));
-        assertTrue(Pages.checkoutPaymentPage().getShipToInfoBoxText().contains(GlobalData.lastName));
-        assertTrue(Pages.checkoutPaymentPage().getShipToInfoBoxText().contains(GlobalData.streetName));
-        assertTrue(Pages.checkoutPaymentPage().getShipToInfoBoxText().contains(GlobalData.cityName));
-        assertTrue(Pages.checkoutPaymentPage().getShipToInfoBoxText().contains(GlobalData.state));
-        assertTrue(Pages.checkoutPaymentPage().getShipToInfoBoxText().contains(GlobalData.validPostalCode));
-        assertTrue(Pages.checkoutPaymentPage().getShipToInfoBoxText().contains(GlobalData.country));
-        assertTrue(Pages.checkoutPaymentPage().getShipToInfoBoxText().contains(GlobalData.phoneNumber));
-        assertEquals(Pages.checkoutPaymentPage().getShippingMethodInfoBox(), selectedShippingMethod);
+        softAssert.assertEquals(Pages.checkoutPaymentPage().getItemSizeByIndex(1), itemData.get("Size"));
+        softAssert.assertEquals(Pages.checkoutPaymentPage().getItemColorByIndex(1), itemData.get("Color"));
+        softAssert.assertTrue(Pages.checkoutPaymentPage().getShipToInfoBoxText().contains(GlobalData.firstName));
+        softAssert.assertTrue(Pages.checkoutPaymentPage().getShipToInfoBoxText().contains(GlobalData.lastName));
+        softAssert.assertTrue(Pages.checkoutPaymentPage().getShipToInfoBoxText().contains(GlobalData.streetName));
+        softAssert.assertTrue(Pages.checkoutPaymentPage().getShipToInfoBoxText().contains(GlobalData.cityName));
+        softAssert.assertTrue(Pages.checkoutPaymentPage().getShipToInfoBoxText().contains(GlobalData.state));
+        softAssert.assertTrue(Pages.checkoutPaymentPage().getShipToInfoBoxText().contains(GlobalData.validPostalCode));
+        softAssert.assertTrue(Pages.checkoutPaymentPage().getShipToInfoBoxText().contains(GlobalData.country));
+        softAssert.assertTrue(Pages.checkoutPaymentPage().getShipToInfoBoxText().contains(GlobalData.phoneNumber));
+        softAssert.assertEquals(Pages.checkoutPaymentPage().getShippingMethodInfoBox(), selectedShippingMethod);
+        softAssert.assertAll();
 
         Pages.checkoutPaymentPage().clickPlaceOrderButton();
         assertEquals(Pages.checkoutSuccessPage().getSuccessMessage(), GlobalData.successOrderCreatingTitle);

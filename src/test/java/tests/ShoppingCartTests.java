@@ -63,7 +63,7 @@ public class ShoppingCartTests extends BaseTest {
         String newOrderSubtotal = "$154.00";
         Pages.shoppingCartPage().setItemQtyInput(newItemQty);
         Pages.shoppingCartPage().clickUpdateCartButton();
-        sleep(3000);
+        //still displayed thw old price
         assertEquals(Pages.shoppingCartPage().getOrderTotal(), newOrderSubtotal);
     }
 
@@ -73,35 +73,35 @@ public class ShoppingCartTests extends BaseTest {
     public void checkShoppingCartUpdating(){
         start(GlobalData.mainURL);
 
-        HashMap<String, String> data1 = new HashMap<>();
+        HashMap<String, String> jackshirtItemData = new HashMap<>();
         Pages.homepage().clickMenJacketsMenuButton();
         Pages.jacketsPage().clickProductCardByIndex(1);
         Pages.productPage().selectSize();
         Pages.productPage().selectColor();
-        data1.put("Name", Pages.productPage().getProductName());
-        data1.put("Price", Pages.productPage().getProductPrice());
-        data1.put("Size", Pages.productPage().getSelectedSize());
-        data1.put("Color", Pages.productPage().getSelectedColor());
-        data1.put("Qty", Pages.productPage().getItemQty());
+        jackshirtItemData.put("Name", Pages.productPage().getProductName());
+        jackshirtItemData.put("Price", Pages.productPage().getProductPrice());
+        jackshirtItemData.put("Size", Pages.productPage().getSelectedSize());
+        jackshirtItemData.put("Color", Pages.productPage().getSelectedColor());
+        jackshirtItemData.put("Qty", Pages.productPage().getItemQty());
         Pages.productPage().clickAddToCartButton();
         assertEquals(Pages.header().getCartCounterValue(), "1");
 
-        HashMap<String, String> data2 = new HashMap<>();
+        HashMap<String, String> trainerItemData = new HashMap<>();
         Pages.header().clickMenJacketsMenuButton();
         Pages.jacketsPage().clickProductCardByIndex(3);
         Pages.productPage().selectSize();
         Pages.productPage().selectColor();
-        data2.put("Name", Pages.productPage().getProductName());
-        data2.put("Price", Pages.productPage().getProductPrice());
-        data2.put("Size", Pages.productPage().getSelectedSize());
-        data2.put("Color", Pages.productPage().getSelectedColor());
-        data2.put("Qty", Pages.productPage().getItemQty());
+        trainerItemData.put("Name", Pages.productPage().getProductName());
+        trainerItemData.put("Price", Pages.productPage().getProductPrice());
+        trainerItemData.put("Size", Pages.productPage().getSelectedSize());
+        trainerItemData.put("Color", Pages.productPage().getSelectedColor());
+        trainerItemData.put("Qty", Pages.productPage().getItemQty());
         Pages.productPage().clickAddToCartButton();
         assertEquals(Pages.header().getCartCounterValue(), "2");
 
         Pages.header().clickCartButton();
-        assertEquals(Pages.header().getItemNameByIndex(1), data2.get("Name"));
-        assertEquals(Pages.header().getItemNameByIndex(2), data1.get("Name"));
+        assertEquals(Pages.header().getItemNameByIndex(1), trainerItemData.get("Name"));
+        assertEquals(Pages.header().getItemNameByIndex(2), jackshirtItemData.get("Name"));
 
         String newItemQty = "2";
         String newItemSubtotal = "$113.98";
@@ -109,8 +109,7 @@ public class ShoppingCartTests extends BaseTest {
         Pages.header().clickViewAndEditCartLink();
         Pages.shoppingCartPage().setItemQtyInputByIndex(2, newItemQty);
         Pages.shoppingCartPage().clickUpdateCartButton();
-        assertEquals(Pages.shoppingCartPage().getItemSubtotalByIndex(2, newItemSubtotal), newItemSubtotal);
-        sleep(3000);
+        assertEquals(Pages.shoppingCartPage().getItemSubtotalByIndex(2, trainerItemData.get("Name")), newItemSubtotal);
         assertEquals(Pages.shoppingCartPage().getOrderTotal(), newOrderTotal);
 
         Pages.shoppingCartPage().clickEditButton(1);

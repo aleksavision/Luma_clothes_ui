@@ -7,7 +7,6 @@ import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
 
 import org.testng.ITestContext;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.asserts.SoftAssert;

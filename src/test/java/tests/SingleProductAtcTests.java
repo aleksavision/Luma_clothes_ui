@@ -31,54 +31,54 @@ public class SingleProductAtcTests extends BaseTest {
         Pages.jacketsPage().clickProductCardByIndex(1);
         Pages.productPage().mainElementsIsDisplayedAsserts();
 
-        Map<String, String> data1 = new HashMap<>();
-        data1.put("Name", Pages.productPage().getProductName());
-        data1.put("Price", Pages.productPage().getProductPrice());
-        data1.put("SKU", Pages.productPage().getProductSku());
+        Map<String, String> jackshirtItemData = new HashMap<>();
+        jackshirtItemData.put("Name", Pages.productPage().getProductName());
+        jackshirtItemData.put("Price", Pages.productPage().getProductPrice());
+        jackshirtItemData.put("SKU", Pages.productPage().getProductSku());
 
         Pages.homepage().clickMenJacketsMenuButton().clickProductCardByIndex(2);
         Pages.productPage().mainElementsIsDisplayedAsserts();
-        Map<String, String> data2 = new HashMap<>();
-        data2.put("Name", Pages.productPage().getProductName());
-        data2.put("Price", Pages.productPage().getProductPrice());
-        data2.put("SKU", Pages.productPage().getProductSku());
+        Map<String, String> windJacketItemData = new HashMap<>();
+        windJacketItemData.put("Name", Pages.productPage().getProductName());
+        windJacketItemData.put("Price", Pages.productPage().getProductPrice());
+        windJacketItemData.put("SKU", Pages.productPage().getProductSku());
 
         Pages.productPage().clickAddToCompareButton();
-        assertEquals(Pages.productPage().getSuccessMessage(), GlobalData.successAddingToCompareMessage(data2.get("Name")));
+        assertEquals(Pages.productPage().getSuccessMessage(), GlobalData.successAddingToCompareMessage(windJacketItemData.get("Name")));
 
         Pages.productPage().clickComparisonListLink();
-        assertEquals(Pages.compareProductsPage().getItemNameByIndex(1), data2.get("Name"));
-        assertEquals(Pages.compareProductsPage().getItemPriceByIndex(1), data2.get("Price"));
-        assertEquals(Pages.compareProductsPage().getItemSkuByIndex(1), data2.get("SKU"));
-        assertTrue(Pages.compareProductsPage().isItemDescDisplayed(), "Product description for " + data2.get("Name") + " isn't displayed");
+        assertEquals(Pages.compareProductsPage().getItemNameByIndex(1), windJacketItemData.get("Name"));
+        assertEquals(Pages.compareProductsPage().getItemPriceByIndex(1), windJacketItemData.get("Price"));
+        assertEquals(Pages.compareProductsPage().getItemSkuByIndex(1), windJacketItemData.get("SKU"));
+        assertTrue(Pages.compareProductsPage().isItemDescDisplayed(), "Product description for " + windJacketItemData.get("Name") + " isn't displayed");
 
-        assertEquals(Pages.compareProductsPage().getItemNameByIndex(2), data1.get("Name"));
-        assertEquals(Pages.compareProductsPage().getItemPriceByIndex(2), data1.get("Price"));
-        assertEquals(Pages.compareProductsPage().getItemSkuByIndex(2), data1.get("SKU"));
+        assertEquals(Pages.compareProductsPage().getItemNameByIndex(2), jackshirtItemData.get("Name"));
+        assertEquals(Pages.compareProductsPage().getItemPriceByIndex(2), jackshirtItemData.get("Price"));
+        assertEquals(Pages.compareProductsPage().getItemSkuByIndex(2), jackshirtItemData.get("SKU"));
 
         Pages.compareProductsPage().clickRemoveItemButton();
         Pages.header().clickOkConfirmationButton();
-        assertEquals(Pages.compareProductsPage().getSuccessMessage(), GlobalData.successItemRemovingFromComparisonMessage(data2.get("Name")));
-        assertTrue(Pages.compareProductsPage().isItemDescDisplayed(), "Product description for " + data2.get("Name") + " isn't displayed");
+        assertEquals(Pages.compareProductsPage().getSuccessMessage(), GlobalData.successItemRemovingFromComparisonMessage(windJacketItemData.get("Name")));
+        assertTrue(Pages.compareProductsPage().isItemDescDisplayed(), "Product description for " + windJacketItemData.get("Name") + " isn't displayed");
 
         Pages.compareProductsPage().clickAddToCartButton();
         assertEquals(Pages.productPage().getWarningMessageText(), GlobalData.chooseOptionWarningMessage);
 
         Pages.productPage().selectSizeByIndex(2);
         Pages.productPage().selectColor();
-        data1.put("Size", Pages.productPage().getSelectedSize());
-        data1.put("Color", Pages.productPage().getSelectedColor());
-        data1.put("Qty", Pages.productPage().getItemQty());
+        jackshirtItemData.put("Size", Pages.productPage().getSelectedSize());
+        jackshirtItemData.put("Color", Pages.productPage().getSelectedColor());
+        jackshirtItemData.put("Qty", Pages.productPage().getItemQty());
         Pages.productPage().clickAddToCartButton();
-        assertEquals(Pages.productPage().getSuccessMessage(), GlobalData.successATCMessage(data1.get("Name")));
+        assertEquals(Pages.productPage().getSuccessMessage(), GlobalData.successATCMessage(jackshirtItemData.get("Name")));
 
         Pages.productPage().clickShoppingCartLink();
-        assertEquals(Pages.shoppingCartPage().getItemName(), data1.get("Name"));
-        assertEquals(Pages.shoppingCartPage().getItemPrice(), data1.get("Price"));
-        assertEquals(Pages.shoppingCartPage().getItemSubtotal(), data1.get("Price"));
-        assertEquals(Pages.shoppingCartPage().getItemSize(), data1.get("Size"));
-        assertEquals(Pages.shoppingCartPage().getItemColor(), data1.get("Color"));
-        assertEquals(Pages.shoppingCartPage().getItemQty(), data1.get("Qty"));
+        assertEquals(Pages.shoppingCartPage().getItemName(), jackshirtItemData.get("Name"));
+        assertEquals(Pages.shoppingCartPage().getItemPrice(), jackshirtItemData.get("Price"));
+        assertEquals(Pages.shoppingCartPage().getItemSubtotal(), jackshirtItemData.get("Price"));
+        assertEquals(Pages.shoppingCartPage().getItemSize(), jackshirtItemData.get("Size"));
+        assertEquals(Pages.shoppingCartPage().getItemColor(), jackshirtItemData.get("Color"));
+        assertEquals(Pages.shoppingCartPage().getItemQty(), jackshirtItemData.get("Qty"));
 
         Pages.shoppingCartPage().clickRemoveItemButton();
         assertEquals(Pages.shoppingCartPage().getEmptyCartInfoText(), GlobalData.emptyCartInfoMessage);
@@ -104,20 +104,20 @@ public class SingleProductAtcTests extends BaseTest {
         String size = "XL";
         String color = "Purple";
         Pages.homepage().clickWomenMenuButton().clickTopsLink();
-        Map<String, String> data = new HashMap<>();
-        data.put("Name", Pages.topsPage().getItemNameByIndex(2));
-        data.put("Rating", Pages.topsPage().getItemRatingRateByIndex(2));
-        data.put("Reviews", Pages.topsPage().getItemReviewsQtyByIndex(2));
-        data.put("Price", Pages.topsPage().getItemPriceByIndex(2));
+        Map<String, String> itemData = new HashMap<>();
+        itemData.put("Name", Pages.topsPage().getItemNameByIndex(2));
+        itemData.put("Rating", Pages.topsPage().getItemRatingRateByIndex(2));
+        itemData.put("Reviews", Pages.topsPage().getItemReviewsQtyByIndex(2));
+        itemData.put("Price", Pages.topsPage().getItemPriceByIndex(2));
         Pages.topsPage().selectItemOptionByIndex(2, size);
         Pages.topsPage().selectItemOptionByIndex(2, color);
         Pages.topsPage().clickAddToCartButtonByIndex(2);
-        assertEquals(Pages.topsPage().getSuccessMessage(), GlobalData.successATCMessage(data.get("Name")));
+        assertEquals(Pages.topsPage().getSuccessMessage(), GlobalData.successATCMessage(itemData.get("Name")));
 
         Pages.topsPage().clickShoppingCartLink();
-        assertEquals(Pages.shoppingCartPage().getItemName(), data.get("Name"));
-        assertEquals(Pages.shoppingCartPage().getItemPrice(), data.get("Price"));
-        assertEquals(Pages.shoppingCartPage().getItemSubtotal(), data.get("Price"));
+        assertEquals(Pages.shoppingCartPage().getItemName(), itemData.get("Name"));
+        assertEquals(Pages.shoppingCartPage().getItemPrice(), itemData.get("Price"));
+        assertEquals(Pages.shoppingCartPage().getItemSubtotal(), itemData.get("Price"));
         assertEquals(Pages.shoppingCartPage().getItemSize(), size);
         assertEquals(Pages.shoppingCartPage().getItemColor(), color);
         assertTrue(!Pages.shoppingCartPage().discountTitleIsDisplayed());
@@ -137,10 +137,10 @@ public class SingleProductAtcTests extends BaseTest {
         Pages.productPage().setQtyInput("5");
         Pages.productPage().clickAddToCartButton();
         assertEquals(Pages.productPage().getSuccessMessage(), GlobalData.successATCMessage(Pages.productPage().getProductName()));
-        assertEquals(Pages.productPage().getProductName(), data.get("Name"));
-        assertEquals(Pages.productPage().getProductPrice(), data.get("Price"));
-        assertEquals(Pages.productPage().getRatingRateValue() + "%", data.get("Rating"));
-        assertEquals(Pages.productPage().getReviewsValue() + " Reviews", data.get("Reviews"));
+        assertEquals(Pages.productPage().getProductName(), itemData.get("Name"));
+        assertEquals(Pages.productPage().getProductPrice(), itemData.get("Price"));
+        assertEquals(Pages.productPage().getRatingRateValue() + "%", itemData.get("Rating"));
+        assertEquals(Pages.productPage().getReviewsValue() + " Reviews", itemData.get("Reviews"));
         assertEquals(Pages.productPage().getSelectedSize(), size);
         assertEquals(Pages.productPage().getSelectedColor(), color);
 

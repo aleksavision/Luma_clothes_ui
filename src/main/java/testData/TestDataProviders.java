@@ -1,6 +1,7 @@
 package testData;
 
 import org.testng.annotations.DataProvider;
+import pages.Pages;
 
 import java.io.IOException;
 
@@ -37,12 +38,10 @@ public class TestDataProviders {
     public Object[][] provideInvalidRegisterData() throws IOException {
         String email = new EmailGenerator().generateUniqueEmail();
         return new Object[][]{
-                {"", "", "", "", "", GlobalData.requiredFieldError, "getFirstNameFieldError"},
-                {"", "", "", "", "", GlobalData.requiredFieldError, "getLastNameFieldError"},
-                {"", "", "", "", "", GlobalData.requiredFieldError, "getEmailFieldError"},
-                {"", "", "", "", "", GlobalData.requiredFieldError, "getPasswordFieldError"},
-                {"", "", "", "", "", GlobalData.requiredFieldError, "getConfirmPasswordFieldError"},
-
+                {"", "", "", "", "", GlobalData.requiredFieldError, new String[]{
+                        "getFirstNameFieldError", "getLastNameFieldError", "getEmailFieldError",
+                        "getPasswordFieldError", "getConfirmPasswordFieldError"}
+                },
                 {GlobalData.firstName, GlobalData.lastName, GlobalData.invalidEmail, GlobalData.validPassword, GlobalData.validPassword, GlobalData.invalidEmailError, "getEmailFieldError"},
                 {GlobalData.firstName, GlobalData.lastName, email, GlobalData.validPassword, GlobalData.validPassword + "1", GlobalData.invalidConfirmPasswordError, "getConfirmPasswordFieldError"},
                 {GlobalData.firstName, GlobalData.lastName, email, GlobalData.sevenSymbolsPassword, GlobalData.sevenSymbolsPassword, GlobalData.tooShortPasswordError, "getPasswordFieldError"},

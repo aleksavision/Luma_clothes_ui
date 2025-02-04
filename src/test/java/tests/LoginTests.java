@@ -16,12 +16,15 @@ public class LoginTests extends BaseTest {
     @Test(groups = {"success", "login"})
     @Description("Form is applied with valid data. User is logged in")
     @Severity(SeverityLevel.CRITICAL)
-    public void unsuccessSuccessLogin(){
+    public void successLoginTests(){
         start(GlobalData.mainURL);
 
         Pages.homepage().clickSignInLink();
         Pages.loginPage().mainElementsIsDisplayedAsserts();
 
+        Pages.loginPage().setEmailInput(GlobalData.validEmail);
+        Pages.loginPage().setPasswordInput(GlobalData.validPassword);
+        Pages.loginPage().clickSignInButton();
         Pages.loginPage().setEmailInput(GlobalData.validEmail);
         Pages.loginPage().setPasswordInput(GlobalData.validPassword);
         Pages.loginPage().clickSignInButton();

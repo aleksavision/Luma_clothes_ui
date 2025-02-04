@@ -51,7 +51,7 @@ public class RegisterTests extends BaseTest {
     @Test (groups = {"unsuccess", "register"}, dataProvider = "invalidRegisterData", dataProviderClass = TestDataProviders.class)
     @Description("Form is filled with invalid data. User isn't registered. Error is displayed")
     @Severity(SeverityLevel.NORMAL)
-    public void invalidRegisterTests(String firstName, String lastName, String email, String password, String confirmPass, String expectedError, String errorMethod){
+    public void invalidRegisterTests(String firstName, String lastName, String email, String password, String confirmPass, String expectedError, Object errorMethods){
         start(GlobalData.mainURL);
 
         Pages.homepage().clickCreateAnAccountLink();
@@ -64,8 +64,19 @@ public class RegisterTests extends BaseTest {
         Pages.registerPage().setConfirmPasswordInput(confirmPass);
         Pages.registerPage().clickCreateAnAccountButton();
 
-        assertEquals(getErrorUsingMethod(errorMethod), expectedError);
+        // Если errorMethods - это строка, проверяем одну ошибку
+        if (errorMethods instanceof String) {
+            assertEquals(getErrorUsingMethod((String) errorMethods), expectedError);
+        }
+        // Если errorMethods - это массив строк, проверяем несколько ошибок для пустых полей
+        else if (errorMethods instanceof String[]) {
+            String[] methods = (String[]) errorMethods;
+            for (String method : methods) {
+                assertEquals(getErrorUsingMethod(method), expectedError);
+            }
+        }
     }
+
 
 
 
@@ -86,6 +97,7 @@ public class RegisterTests extends BaseTest {
             default:
                 throw new IllegalArgumentException("Unknown error method: " + errorMethod);
         }
+
     }
 
 

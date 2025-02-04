@@ -17,7 +17,7 @@ public class ProductPage extends PageTools {
     private final By shoppingCartLink = By.xpath("//a[text()='shopping cart']");
     private final By sizeButton = By.xpath("//div[contains(@class, 'swatch-option text')]");
     private final By colorButton = By.xpath("//div[contains(@class, 'swatch-option color')]");
-    private final By priceInfo = By.xpath("//span[@itemprop='offers']//span[@class='price']");
+    private final By priceInfo = By.xpath("//div[@class='product-info-price']/div/span/span/span/span");
     private final By minPriceInfo = By.xpath("//span[@data-price-type='minPrice']//span[@class='price']");
     private final By maxPriceInfo = By.xpath("//span[@data-price-type='maxPrice']//span[@class='price']");
     private final By groupItemPrice = By.xpath("//span[@class='price-wrapper ']/span");

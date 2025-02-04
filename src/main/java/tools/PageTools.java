@@ -1,10 +1,7 @@
 package tools;
 
 import com.codeborne.selenide.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import pages.pdp.ProductPage;
 
 import java.io.File;
@@ -294,8 +291,6 @@ public class PageTools {
         Selenide.executeJavaScript("arguments[0].setAttribute(arguments[1], arguments[2]);", element.shouldBe(visible), attributeName, value);
     }
 
-
-
     ///By index
     /**
      *
@@ -350,6 +345,12 @@ public class PageTools {
         InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(by, args));
         By locator = By.id("(" + byLocator(by, args) + ")[" + index + "]");
         $(byLocator(locator)).shouldBe(Condition.visible).shouldHave(Condition.text(text), Duration.ofSeconds(seconds));
+    }
+
+    protected void waitForElementUntilByIndex(By by, int index, long seconds, Object... args) {
+        InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(by, args));
+        By locator = By.id("(" + byLocator(by, args) + ")[" + index + "]");
+        $(byLocator(locator)).shouldBe(Condition.visible,Duration.ofSeconds(seconds));
     }
     /**
      *

@@ -12,7 +12,6 @@ import testData.TestDataProviders;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.codeborne.selenide.Selenide.sleep;
 import static org.testng.Assert.assertEquals;
 
 public class GroupProductAtcTests extends BaseTest {
@@ -26,18 +25,18 @@ public class GroupProductAtcTests extends BaseTest {
         Pages.homepage().clickWomenMenuButton().clickTestLink().clickGroupProductCard();
         Pages.productPage().mainElementsIsDisplayedAsserts();
 
-        Map<String, String> data1 = new HashMap<>();
-        data1.put("Product name", Pages.productPage().getProductName());
-        data1.put("Item name 1", Pages.productPage().getGroupItemName(1));
-        data1.put("Item name 2", Pages.productPage().getGroupItemName(2));
-        data1.put("Item name 3", Pages.productPage().getGroupItemName(3));
-        data1.put("Item price 1", Pages.productPage().getGroupItemPrice(1));
-        data1.put("Item price 2", Pages.productPage().getGroupItemPrice(2));
-        data1.put("Item price 3", Pages.productPage().getGroupItemPrice(3));
-        data1.put("Item qty 1", Pages.productPage().getGroupItemQty(1));
-        data1.put("Item qty 2", Pages.productPage().getGroupItemQty(2));
-        data1.put("Item qty 3", Pages.productPage().getGroupItemQty(3));
-        data1.put("Order total", "$104.00");
+        Map<String, String> groupItemData = new HashMap<>();
+        groupItemData.put("Product name", Pages.productPage().getProductName());
+        groupItemData.put("Pack name", Pages.productPage().getGroupItemName(1));
+        groupItemData.put("Bag name", Pages.productPage().getGroupItemName(2));
+        groupItemData.put("Backpack name", Pages.productPage().getGroupItemName(3));
+        groupItemData.put("Pack price", Pages.productPage().getGroupItemPrice(1));
+        groupItemData.put("Bag price", Pages.productPage().getGroupItemPrice(2));
+        groupItemData.put("Backpack price", Pages.productPage().getGroupItemPrice(3));
+        groupItemData.put("Pack qty", Pages.productPage().getGroupItemQty(1));
+        groupItemData.put("Bag qty", Pages.productPage().getGroupItemQty(2));
+        groupItemData.put("Backpack qty", Pages.productPage().getGroupItemQty(3));
+        groupItemData.put("Order total", "$104.00");
 
         Pages.productPage().clickAddToWishlistButtonAsGuest();
         assertEquals(Pages.loginPage().getErrorMessageText(), GlobalData.notRegistredUserForWishlistErrorMessage);
@@ -45,69 +44,67 @@ public class GroupProductAtcTests extends BaseTest {
         Pages.loginPage().setEmailInput(GlobalData.validEmail);
         Pages.loginPage().setPasswordInput(GlobalData.validPassword);
         Pages.loginPage().clickSignInButtonToWishlist();
-        assertEquals(Pages.myWishListPage().getSuccessMessageText(), GlobalData.successAddingToWishlistMessage(data1.get("Product name")));
-        assertEquals(Pages.myWishListPage().getItemName(1), data1.get("Product name"));
-        assertEquals(Pages.myWishListPage().getItemPrice(1), data1.get("Order total"));
+        assertEquals(Pages.myWishListPage().getSuccessMessageText(), GlobalData.successAddingToWishlistMessage(groupItemData.get("Product name")));
+        assertEquals(Pages.myWishListPage().getItemName(1), groupItemData.get("Product name"));
+        assertEquals(Pages.myWishListPage().getItemPrice(1), groupItemData.get("Order total"));
         Pages.myWishListPage().openOptionsDetailsForItemByIndex(1);
-        assertEquals(Pages.myWishListPage().getGroupItemNameByIndex(1), data1.get("Item name 1"));
-        assertEquals(Pages.myWishListPage().getGroupItemNameByIndex(2), data1.get("Item name 2"));
-        assertEquals(Pages.myWishListPage().getGroupItemNameByIndex(3), data1.get("Item name 3"));
-        assertEquals(Pages.myWishListPage().getGroupItemQtyByIndex(1), data1.get("Item qty 1"));
-        assertEquals(Pages.myWishListPage().getGroupItemQtyByIndex(2), data1.get("Item qty 2"));
-        assertEquals(Pages.myWishListPage().getGroupItemQtyByIndex(3), data1.get("Item qty 3"));
+        assertEquals(Pages.myWishListPage().getGroupItemNameByIndex(1), groupItemData.get("Pack name"));
+        assertEquals(Pages.myWishListPage().getGroupItemNameByIndex(2), groupItemData.get("Bag name"));
+        assertEquals(Pages.myWishListPage().getGroupItemNameByIndex(3), groupItemData.get("Backpack name"));
+        assertEquals(Pages.myWishListPage().getGroupItemQtyByIndex(1), groupItemData.get("Pack qty"));
+        assertEquals(Pages.myWishListPage().getGroupItemQtyByIndex(2), groupItemData.get("Bag qty"));
+        assertEquals(Pages.myWishListPage().getGroupItemQtyByIndex(3), groupItemData.get("Backpack qty"));
         Pages.header().clickCartButton();
         Pages.header().clearCart();
 
         Pages.header().clickWomenShortsMenuButton();
-        Map<String, String> data2 = new HashMap<>();
-        data2.put("Name", Pages.shortsPage().getItemNameByIndex(1));
-        data2.put("Price", Pages.shortsPage().getItemPriceByIndex(1));
+        Map<String, String> shortItemData = new HashMap<>();
+        shortItemData.put("Name", Pages.shortsPage().getItemNameByIndex(1));
+        shortItemData.put("Price", Pages.shortsPage().getItemPriceByIndex(1));
 
         Pages.shortsPage().clickAddToWishlistButtonByIndexAsUser(1);
-        assertEquals(Pages.myWishListPage().getSuccessMessageText(), GlobalData.successAddingToWishlistMessage(data2.get("Name")));
+        assertEquals(Pages.myWishListPage().getSuccessMessageText(), GlobalData.successAddingToWishlistMessage(shortItemData.get("Name")));
 
-        assertEquals(Pages.myWishListPage().getItemName(2), data2.get("Name"));
-        assertEquals(Pages.myWishListPage().getItemPrice(2), data2.get("Price"));
+        assertEquals(Pages.myWishListPage().getItemName(2), shortItemData.get("Name"));
+        assertEquals(Pages.myWishListPage().getItemPrice(2), shortItemData.get("Price"));
 
         Pages.myWishListPage().clickRemoveItemButtonByIndex(2);
-        assertEquals(Pages.myWishListPage().getSuccessMessageText(), GlobalData.successItemRemovingFromWishlistMessage(data2.get("Name")));
+        assertEquals(Pages.myWishListPage().getSuccessMessageText(), GlobalData.successItemRemovingFromWishlistMessage(shortItemData.get("Name")));
         assertEquals(Pages.myWishListPage().getItemsQty(), GlobalData.itemQtyInWishlist("1"));
 
         Pages.myWishListPage().clickAddAllToCartButton();
-        assertEquals(Pages.myWishListPage().getSuccessMessageText(), GlobalData.successATCFromWishlistMessage(data1.get("Product name")));
+        assertEquals(Pages.myWishListPage().getSuccessMessageText(), GlobalData.successATCFromWishlistMessage(groupItemData.get("Product name")));
         assertEquals(Pages.myWishListPage().getEmptyMessageText(), GlobalData.wishlistEmptyInfoMessage);
 
         Pages.header().clickCartButton();
         Pages.header().clickViewAndEditCartLink();
-        assertEquals(Pages.shoppingCartPage().getItemNameByIndex(1), data1.get("Item name 1"));
-        assertEquals(Pages.shoppingCartPage().getItemNameByIndex(2), data1.get("Item name 2"));
-        assertEquals(Pages.shoppingCartPage().getItemNameByIndex(3), data1.get("Item name 3"));
-        assertEquals(Pages.shoppingCartPage().getItemQtyByIndex(1), data1.get("Item qty 1"));
-        assertEquals(Pages.shoppingCartPage().getItemQtyByIndex(2), data1.get("Item qty 2"));
-        assertEquals(Pages.shoppingCartPage().getItemQtyByIndex(3), data1.get("Item qty 3"));
-        assertEquals(Pages.shoppingCartPage().getItemPriceByIndex(1), data1.get("Item price 1"));
-        assertEquals(Pages.shoppingCartPage().getItemPriceByIndex(2), data1.get("Item price 2"));
-        assertEquals(Pages.shoppingCartPage().getItemPriceByIndex(3), data1.get("Item price 3"));
-        assertEquals(Pages.shoppingCartPage().getItemSubtotalByIndex(1, data1.get("Item price 1")), data1.get("Item price 1"));
-        assertEquals(Pages.shoppingCartPage().getItemSubtotalByIndex(2, data1.get("Item price 2")), data1.get("Item price 2"));
-        assertEquals(Pages.shoppingCartPage().getItemSubtotalByIndex(3, data1.get("Item price 3")), data1.get("Item price 3"));
-        sleep(3000);
-        assertEquals(Pages.shoppingCartPage().getOrderTotal(), data1.get("Order total"));
+        assertEquals(Pages.shoppingCartPage().getItemNameByIndex(1), groupItemData.get("Pack name"));
+        assertEquals(Pages.shoppingCartPage().getItemNameByIndex(2), groupItemData.get("Bag name"));
+        assertEquals(Pages.shoppingCartPage().getItemNameByIndex(3), groupItemData.get("Backpack name"));
+        assertEquals(Pages.shoppingCartPage().getItemQtyByIndex(1), groupItemData.get("Pack qty"));
+        assertEquals(Pages.shoppingCartPage().getItemQtyByIndex(2), groupItemData.get("Bag qty"));
+        assertEquals(Pages.shoppingCartPage().getItemQtyByIndex(3), groupItemData.get("Backpack qty"));
+        assertEquals(Pages.shoppingCartPage().getItemPriceByIndex(1), groupItemData.get("Pack price"));
+        assertEquals(Pages.shoppingCartPage().getItemPriceByIndex(2), groupItemData.get("Bag price"));
+        assertEquals(Pages.shoppingCartPage().getItemPriceByIndex(3), groupItemData.get("Backpack price"));
+        assertEquals(Pages.shoppingCartPage().getItemSubtotalByIndex(1, groupItemData.get("Pack name")), groupItemData.get("Pack price"));
+        assertEquals(Pages.shoppingCartPage().getItemSubtotalByIndex(2, groupItemData.get("Bag name")), groupItemData.get("Bag price"));
+        assertEquals(Pages.shoppingCartPage().getItemSubtotalByIndex(3, groupItemData.get("Backpack name")), groupItemData.get("Backpack price"));
+        assertEquals(Pages.shoppingCartPage().getOrderTotal(), groupItemData.get("Order total"));
 
         Pages.shoppingCartPage().setItemQtyInputByIndex(1, "2");
         Pages.shoppingCartPage().setItemQtyInputByIndex(2, "5");
         Pages.shoppingCartPage().setItemQtyInputByIndex(3, "10");
         Pages.shoppingCartPage().clickUpdateCartButton();
-        assertEquals(Pages.shoppingCartPage().getItemPriceByIndex(1), data1.get("Item price 1"));
-        assertEquals(Pages.shoppingCartPage().getItemPriceByIndex(2), data1.get("Item price 2"));
-        assertEquals(Pages.shoppingCartPage().getItemPriceByIndex(3), data1.get("Item price 3"));
+        assertEquals(Pages.shoppingCartPage().getItemPriceByIndex(1), groupItemData.get("Pack price"));
+        assertEquals(Pages.shoppingCartPage().getItemPriceByIndex(2), groupItemData.get("Bag price"));
+        assertEquals(Pages.shoppingCartPage().getItemPriceByIndex(3), groupItemData.get("Backpack price"));
         assertEquals(Pages.shoppingCartPage().getItemQtyByIndex(1), "2");
         assertEquals(Pages.shoppingCartPage().getItemQtyByIndex(2), "5");
         assertEquals(Pages.shoppingCartPage().getItemQtyByIndex(3), "10");
-        assertEquals(Pages.shoppingCartPage().getItemSubtotalByIndex(1, "$64.00"), "$64.00");
-        assertEquals(Pages.shoppingCartPage().getItemSubtotalByIndex(2, "$170.00"), "$170.00");
-        assertEquals(Pages.shoppingCartPage().getItemSubtotalByIndex(3, "$380.00"), "$380.00");
-        sleep(3000);
+        assertEquals(Pages.shoppingCartPage().getItemSubtotalByIndex(1, groupItemData.get("Pack name")), "$64.00");
+        assertEquals(Pages.shoppingCartPage().getItemSubtotalByIndex(2, groupItemData.get("Bag name")), "$170.00");
+        assertEquals(Pages.shoppingCartPage().getItemSubtotalByIndex(3, groupItemData.get("Backpack name")), "$380.00");
         assertEquals(Pages.shoppingCartPage().getOrderTotal(), "$504.00");
     }
 

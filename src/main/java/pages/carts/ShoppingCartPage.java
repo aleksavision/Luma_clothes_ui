@@ -1,10 +1,18 @@
 package pages.carts;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.Homepage;
 import pages.pdp.ProductPage;
 import tools.PageTools;
+
+import java.time.Duration;
+
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class ShoppingCartPage extends PageTools {
 
@@ -95,10 +103,18 @@ public class ShoppingCartPage extends PageTools {
     public String getItemSubtotal(){
         return getElementText(itemSubtotal);
     }
-    @Step("Get item Subtotal value by {index}")
-    public String getItemSubtotalByIndex(int index, String text) {
-        waitForElementHasUntilByIndex(itemSubtotal, index, text,3);
-        return getElementTextByIndex(itemSubtotal, index);
+//    @Step("Get item Subtotal value by {index}")
+//    public String getItemSubtotalByIndex(int index) {
+//        waitForElementUntilByIndex(itemSubtotal, index, 5);
+//        return getElementTextByIndex(itemSubtotal, index);
+//    }
+    @Step("Get item Subtotal value by {name}")
+    public String getItemSubtotalByIndex(int index, String name) {
+        $(orderTotalValue).shouldBe(Condition.appear);
+        if(getItemNameByIndex(index).equals(name)) {
+            return getElementTextByIndex(itemSubtotal, index);
+        } System.out.println(getElementTextByIndex(itemSubtotal, index));
+        return null;
     }
     @Step("Get order Subtotal value")
     public String getOrderSubtotal(){
@@ -118,6 +134,7 @@ public class ShoppingCartPage extends PageTools {
     }
     @Step("Get order Total value")
     public String getOrderTotal(){
+        $(orderTotalValue).shouldBe(Condition.appear);
         return getElementText(orderTotalValue);
     }
     @Step("Set new item {qty} by {index}")

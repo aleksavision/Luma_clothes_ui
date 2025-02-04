@@ -32,24 +32,24 @@ public class BundleProductAtcTests extends BaseTest {
         Pages.productPage().clickAddToCartButton();
         assertEquals(Pages.productPage().getSuccessMessage(),GlobalData.successATCMessage(Pages.productPage().getProductName()));
 
-        Map<String, String> data = new HashMap<>();
-        data.put("Product name", Pages.productPage().getProductName());
-        data.put("Bundle name", Pages.productPage().getSelectedBundleItemName());
-        data.put("Price", "170.00");
-        data.put("Qty", Pages.productPage().getItemQty());
+        Map<String, String> itemData = new HashMap<>();
+        itemData.put("Product name", Pages.productPage().getProductName());
+        itemData.put("Bundle name", Pages.productPage().getSelectedBundleItemName());
+        itemData.put("Price", "170.00");
+        itemData.put("Qty", Pages.productPage().getItemQty());
 
         Pages.header().clickCartButton();
         Pages.header().clickSeeDetailsLink();
         assertEquals(Pages.header().getItemQty(), newItemQty);
-        assertEquals(Pages.header().getItemName(), data.get("Product name"));
-        softAssert.assertEquals(Pages.header().getItemPrice(), data.get("Price"));
-        softAssert.assertEquals(Pages.header().getItemDetailedInfo(),data.get("Bundle name") + " " + data.get("Price"));
+        assertEquals(Pages.header().getItemName(), itemData.get("Product name"));
+        softAssert.assertEquals(Pages.header().getItemPrice(), itemData.get("Price"));
+        softAssert.assertEquals(Pages.header().getItemDetailedInfo(),itemData.get("Bundle name") + " " + itemData.get("Price"));
         softAssert.assertEquals(Pages.header().getCartSubtotal(), "$510.00");
 
         String updatedItemQty = "5";
         Pages.header().setQtyInput(updatedItemQty);
         Pages.header().clickUpdateButton();
-        softAssert.assertEquals(Pages.header().getItemPrice(), data.get("Price"));
+        softAssert.assertEquals(Pages.header().getItemPrice(), itemData.get("Price"));
         softAssert.assertEquals(Pages.header().getItemQty(), updatedItemQty);
         softAssert.assertEquals(Pages.header().getCartSubtotal(), "$850.00");
         softAssert.assertAll();
@@ -72,27 +72,27 @@ public class BundleProductAtcTests extends BaseTest {
         Pages.productPage().clickAddToCartButton();
         assertEquals(Pages.productPage().getSuccessMessage(),GlobalData.successATCMessage(Pages.productPage().getProductName()));
 
-        HashMap<String, String> data1 = new HashMap<>();
-        data1.put("Name", Pages.productPage().getSelectedBundleItemName());
-        data1.put("Price", Pages.productPage().getSelectedBundleItemPrice());
+        HashMap<String, String> shoulderPackItemData = new HashMap<>();
+        shoulderPackItemData.put("Name", Pages.productPage().getSelectedBundleItemName());
+        shoulderPackItemData.put("Price", Pages.productPage().getSelectedBundleItemPrice());
 
         Pages.header().clickCartButton();
         Pages.header().clickSeeDetailsLink();
-        softAssert.assertEquals(Pages.header().getItemDetailedPrice(), data1.get("Price"));
-        softAssert.assertTrue(Pages.header().getItemDetailedInfo().contains(data1.get("Name")));
+        softAssert.assertEquals(Pages.header().getItemDetailedPrice(), shoulderPackItemData.get("Price"));
+        softAssert.assertTrue(Pages.header().getItemDetailedInfo().contains(shoulderPackItemData.get("Name")));
 
         Pages.header().clickEditItemButton();
         Pages.productPage().selectBundleItem("Rival Field Messenger +$225.00");
 
-        HashMap<String, String> data2 = new HashMap<>();
-        data2.put("Name", Pages.productPage().getSelectedBundleItemName());
-        data2.put("Price", Pages.productPage().getSelectedBundleItemPrice());
+        HashMap<String, String> messengerItemData = new HashMap<>();
+        messengerItemData.put("Name", Pages.productPage().getSelectedBundleItemName());
+        messengerItemData.put("Price", Pages.productPage().getSelectedBundleItemPrice());
         Pages.productPage().clickUpdateCartButton();
 
         assertEquals(Pages.shoppingCartPage().getSuccessInfoMessage(), GlobalData.successCartUpdatingMessage);
-        softAssert.assertEquals(Pages.shoppingCartPage().getItemSubtotal(), data2.get("Price"));
-        softAssert.assertEquals(Pages.shoppingCartPage().getOrderSubtotal(), data2.get("Price"));
-        softAssert.assertEquals(Pages.shoppingCartPage().getOrderTotal(), data2.get("Price"));
+        softAssert.assertEquals(Pages.shoppingCartPage().getItemSubtotal(), messengerItemData.get("Price"));
+        softAssert.assertEquals(Pages.shoppingCartPage().getOrderSubtotal(), messengerItemData.get("Price"));
+        softAssert.assertEquals(Pages.shoppingCartPage().getOrderTotal(), messengerItemData.get("Price"));
         softAssert.assertAll();
     }
 
