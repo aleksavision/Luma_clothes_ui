@@ -9,12 +9,9 @@ public class SuccessLogoutPage extends PageTools {
     private final By successMessage = By.xpath("//span[@class='base']");
 
     @Step("Check success logout message text")
-    public String getSuccessMessage(){
+    public String getSuccessMessage() {
         return getElementText(successMessage);
     }
-
-
-
 
 
     //http://46.101.147.48/customer/account/logoutSuccess/

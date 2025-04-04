@@ -2,12 +2,10 @@ package tools;
 
 import com.codeborne.selenide.*;
 import org.openqa.selenium.*;
-import pages.pdp.ProductPage;
 
 import java.io.File;
 import java.time.Duration;
 import java.util.List;
-import java.util.Random;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
@@ -273,6 +271,12 @@ public class PageTools {
         input.shouldBe(Condition.visible).sendKeys(text);
     }
 
+    protected void clearInputFieldset(By fieldset, By by, Object... args) {
+        InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(by, args));
+        SelenideElement input = $(fieldset).$(by);
+        input.shouldBe(Condition.visible).clear();
+    }
+
     protected boolean isElementInFieldsetVisible(By fieldset, By by, Object... args) {
         InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(by, args));
         SelenideElement element = $(fieldset).$(byLocator(by, args));
@@ -290,6 +294,14 @@ public class PageTools {
         SelenideElement element = $(fieldset).$(by);
         Selenide.executeJavaScript("arguments[0].setAttribute(arguments[1], arguments[2]);", element.shouldBe(visible), attributeName, value);
     }
+
+    protected String getElementFieldsetText(By fieldset, By by, Object... args) {
+        InfoLogger.logInfo(getPreviousMethodNameAsText() + ", element --> " + byLocator(by, args));
+        SelenideElement element = $(fieldset).$(byLocator(by, args));
+        return element.shouldBe(Condition.enabled).text();
+    }
+
+
 
     ///By index
     /**

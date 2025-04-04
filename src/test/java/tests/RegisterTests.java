@@ -1,105 +1,78 @@
 package tests;
 
+import actions.Actions;
 import baseTest.BaseTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.Pages;
 import testData.GlobalData;
-import testData.EmailGenerator;
+import utils.EmailGenerator;
 import testData.TestDataProviders;
-
-import java.io.IOException;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class RegisterTests extends BaseTest {
 
-    @Test (groups = {"success", "register"})
-    @Description("User is registered successfully. User is logged out and logged in with new creds successfully.")
-    @Severity(SeverityLevel.CRITICAL)
-    public void successRegisterTest() throws IOException {
+    @BeforeMethod
+    private void startTest() {
         start(GlobalData.mainURL);
-        String email = new EmailGenerator().generateUniqueEmail();
-
-        Pages.homepage().clickCreateAnAccountLink();
-        Pages.registerPage().allFieldsCtaAsserts();
-
-        Pages.registerPage().setFirstNameInput(GlobalData.firstName);
-        Pages.registerPage().setLastNameInput(GlobalData.lastName);
-        Pages.registerPage().setEmailInput(email);
-        Pages.registerPage().setPasswordInput(GlobalData.validPassword);
-        Pages.registerPage().setConfirmPasswordInput(GlobalData.validPassword);
-        Pages.registerPage().clickCreateAnAccountButton();
-        assertEquals(Pages.myAccountPage().getSuccessRegisterMessage(),GlobalData.successRegisterMessage);
-
-        Pages.myAccountPage().clickSignOutLink();
-        assertEquals(Pages.successLogoutPage().getSuccessMessage(), GlobalData.successLogOutMessage);
-
-        Pages.homepage().clickSignInLink();
-        Pages.loginPage().mainElementsIsDisplayedAsserts();
-
-        Pages.loginPage().setEmailInput(email);
-        Pages.loginPage().setPasswordInput(GlobalData.validPassword);
-        Pages.loginPage().clickSignInButton();
-        assertTrue(Pages.homepage().signInLinkNotDisplayed());
-        assertEquals(Pages.header().getGreetingInfo(), GlobalData.greetingInfo(GlobalData.firstName, GlobalData.lastName));
+        Pages.header().clickCreateAnAccountLink();
     }
 
-    @Test (groups = {"unsuccess", "register"}, dataProvider = "invalidRegisterData", dataProviderClass = TestDataProviders.class)
+    @Test(groups = {"elements"})
+    @Description("All elements are displayed on Register page")
+    @Severity(SeverityLevel.NORMAL)
+    public void elementsAreDisplayed() {
+        startTest();
+        Pages.registerPage().allFieldsCtaAsserts();
+    }
+
+    @Test(groups = {"success", "register"})
+    @Description("User is registered successfully")
+    @Severity(SeverityLevel.CRITICAL)
+    public void successRegisterTest() {
+        startTest();
+        String generatedEmail = EmailGenerator.generateRandomEmail();
+
+        Actions.registerPageActions().registerUser(null, null, generatedEmail, null, null);
+        assertEquals(Pages.myAccountPage().getSuccessRegisterMessage(), GlobalData.successRegisterMessage);
+
+        Pages.header().clickSignOutLink();
+        assertEquals(Pages.successLogoutPage().getSuccessMessage(), GlobalData.successLogOutMessage);
+    }
+
+    @Test(groups = {"unsuccess", "register"}, dataProvider = "invalidRegisterData", dataProviderClass = TestDataProviders.class)
     @Description("Form is filled with invalid data. User isn't registered. Error is displayed")
     @Severity(SeverityLevel.NORMAL)
-    public void invalidRegisterTests(String firstName, String lastName, String email, String password, String confirmPass, String expectedError, Object errorMethods){
-        start(GlobalData.mainURL);
+    public void invalidRegisterTests(String firstName, String lastName, String email, String password, String confirmPassword, String expectedError, Object errorMethods) {
+        startTest();
 
-        Pages.homepage().clickCreateAnAccountLink();
-        Pages.registerPage().allFieldsCtaAsserts();
-
-        Pages.registerPage().setFirstNameInput(firstName);
-        Pages.registerPage().setLastNameInput(lastName);
-        Pages.registerPage().setEmailInput(email);
-        Pages.registerPage().setPasswordInput(password);
-        Pages.registerPage().setConfirmPasswordInput(confirmPass);
-        Pages.registerPage().clickCreateAnAccountButton();
-
-        // Если errorMethods - это строка, проверяем одну ошибку
-        if (errorMethods instanceof String) {
-            assertEquals(getErrorUsingMethod((String) errorMethods), expectedError);
-        }
-        // Если errorMethods - это массив строк, проверяем несколько ошибок для пустых полей
-        else if (errorMethods instanceof String[]) {
-            String[] methods = (String[]) errorMethods;
-            for (String method : methods) {
-                assertEquals(getErrorUsingMethod(method), expectedError);
-            }
-        }
+        Actions.registerPageActions().registerUser(firstName, lastName, email, password, confirmPassword);
+        Pages.registerPage().getErrorMessages(errorMethods, expectedError);
     }
 
+    @Test(groups = {"success", "register"})
+    @Description("User is registered successfully. User is logged out and logged in with new creds successfully.")
+    @Severity(SeverityLevel.CRITICAL)
+    public void successRegisterLoginTest() {
+        startTest();
+        String generatedEmail = EmailGenerator.generateRandomEmail();
 
+        Actions.registerPageActions().registerUser(null, null, generatedEmail, null, null);
+        assertEquals(Pages.myAccountPage().getSuccessRegisterMessage(), GlobalData.successRegisterMessage);
 
+        Pages.header().clickSignOutLink();
+        assertEquals(Pages.successLogoutPage().getSuccessMessage(), GlobalData.successLogOutMessage);
 
-
-
-    private String getErrorUsingMethod(String errorMethod) {
-        switch (errorMethod) {
-            case "getFirstNameFieldError":
-                return Pages.registerPage().getFirstNameErrorMessage();
-            case "getLastNameFieldError":
-                return Pages.registerPage().getLastNameErrorMessage();
-            case "getEmailFieldError":
-                return Pages.registerPage().getEmailErrorMessage();
-            case "getPasswordFieldError":
-                return Pages.registerPage().getPasswordErrorMessage();
-            case "getConfirmPasswordFieldError":
-                return Pages.registerPage().getConfirmPasswordErrorMessage();
-            default:
-                throw new IllegalArgumentException("Unknown error method: " + errorMethod);
-        }
-
+        Pages.header().clickSignInLink();
+        Pages.loginPage().loginUser(generatedEmail, null);
+        assertTrue(Pages.header().signInLinkNotDisplayed());
+        assertEquals(Pages.header().getGreetingInfo(), GlobalData.greetingInfo(GlobalData.firstName, GlobalData.lastName));
     }
-
 
 
 }

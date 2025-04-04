@@ -1,9 +1,12 @@
 package tests;
 
+import actions.Actions;
 import baseTest.BaseTest;
+import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.Pages;
 import testData.GlobalData;
@@ -11,118 +14,169 @@ import testData.GlobalData;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.codeborne.selenide.Selenide.sleep;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class ShoppingCartTests extends BaseTest {
+
+    Map<String, String> junoJacketData = new HashMap<>();
+    Map<String, String> additionalItemData = new HashMap<>();
+
+    @BeforeMethod
+    public void startTest() {
+        start("http://46.101.147.48/juno-jacket.html");
+        Actions.miniCartActions().clearCart();
+        Pages.productPage().selectSize();
+        Pages.productPage().selectColor();
+        Pages.productPage().clickAddToCartButton();
+
+    }
+
+    @Test(groups = {"success"})
+    @Description("Product is added to cart successfully. Shopping cart elements are checked.")
+    @Severity(SeverityLevel.NORMAL)
+    public void checkItemInShoppingCart() {
+        junoJacketData.put("Name", Pages.productPage().getProductName());
+        junoJacketData.put("Price", Pages.productPage().getProductPrice());
+
+        Pages.productPage().clickShoppingCartLink();
+        assertEquals(Pages.shoppingCartPage().getItemName(), junoJacketData.get("Name"));
+        assertEquals(Pages.shoppingCartPage().getItemPrice(), junoJacketData.get("Price"));
+        assertEquals(Pages.shoppingCartPage().getItemSubtotal(), junoJacketData.get("Price"));
+        assertEquals(Pages.shoppingCartPage().getOrderSubtotal(), junoJacketData.get("Price"));
+        assertEquals(Pages.shoppingCartPage().getOrderTax(), "$0.00");
+        assertEquals(Pages.shoppingCartPage().getOrderTotal(), junoJacketData.get("Price"));
+    }
+
+    @Test(groups = {"success"})
+    @Description("Product is added to cart successfully. Item qty is changed. Cart is updated successfully.")
+    @Severity(SeverityLevel.NORMAL)
+    public void checkItemQtyChanging() {
+        String newItemQty = "5";
+        junoJacketData.put("Price", Pages.productPage().getProductPrice());
+
+        Pages.productPage().clickShoppingCartLink();
+        Pages.shoppingCartPage().setItemQtyInput(newItemQty);
+        Pages.shoppingCartPage().clickUpdateCartButton();
+
+        assertEquals(Pages.shoppingCartPage().getItemPrice(), junoJacketData.get("Price"));
+        Selenide.sleep(5000);
+        assertEquals(Pages.shoppingCartPage().getItemSubtotal(), "$385.00");
+        assertEquals(Pages.shoppingCartPage().getOrderSubtotal(), "$385.00");
+        assertEquals(Pages.shoppingCartPage().getOrderTotal(), "$385.00");
+    }
+
+    @Test(groups = {"success"})
+    @Description("Product is added to cart successfully. Item is changed on Product page. Cart is updated successfully.")
+    @Severity(SeverityLevel.NORMAL)
+    public void checkItemUpdating() {
+        Pages.productPage().clickShoppingCartLink();
+        Pages.shoppingCartPage().clickEditButton(1);
+        Pages.productPage().selectSizeByIndex(3);
+        Pages.productPage().selectColorByIndex(3);
+
+        junoJacketData.put("Price", Pages.productPage().getProductPrice());
+        junoJacketData.put("Size", Pages.productPage().getSelectedSize());
+        junoJacketData.put("Color", Pages.productPage().getSelectedColor());
+
+        Pages.productPage().clickUpdateCartButton();
+        assertEquals(Pages.shoppingCartPage().getItemPrice(), junoJacketData.get("Price"));
+        assertEquals(Pages.shoppingCartPage().getItemSubtotal(), junoJacketData.get("Price"));
+        assertEquals(Pages.shoppingCartPage().getOrderSubtotal(), junoJacketData.get("Price"));
+        assertEquals(Pages.shoppingCartPage().getOrderTax(), "$0.00");
+        assertEquals(Pages.shoppingCartPage().getOrderTotal(), junoJacketData.get("Price"));
+        assertEquals(Pages.shoppingCartPage().getItemSize(), junoJacketData.get("Size"));
+        assertEquals(Pages.shoppingCartPage().getItemColor(), junoJacketData.get("Color"));
+    }
+
+    @Test(groups = {"success"})
+    @Description("Product is added to cart successfully. Coupon is applied. Cart is updated successfully.")
+    @Severity(SeverityLevel.NORMAL)
+    public void successCouponApplying() {
+        String couponCode = "discount";
+
+        Pages.productPage().clickShoppingCartLink();
+        Pages.shoppingCartPage().clickApplyDiscountCodeLink();
+        Pages.shoppingCartPage().setDiscountCodeInput(couponCode);
+        Pages.shoppingCartPage().clickApplyDiscountButton();
+
+        assertTrue(Pages.shoppingCartPage().checkDiscountInfoDisplayed());
+        assertEquals(Pages.shoppingCartPage().getDiscountAmount(), "-$15.40");
+    }
+
+    @Test(groups = {"unsuccess"})
+    @Description("Product is added to cart successfully. Coupon with empty field isn't applied. Error is displayed")
+    @Severity(SeverityLevel.NORMAL)
+    public void emptyCouponApplying() {
+
+        Pages.productPage().clickShoppingCartLink();
+        Pages.shoppingCartPage().clickApplyDiscountCodeLink();
+        Pages.shoppingCartPage().clickApplyDiscountButton();
+
+        assertEquals(Pages.shoppingCartPage().getDiscountInputError(), GlobalData.requiredFieldError);
+    }
+
+    @Test(groups = {"unsuccess"})
+    @Description("Product is added to cart successfully. Invalid coupon isn't applied. Error is displayed")
+    @Severity(SeverityLevel.NORMAL)
+    public void invalidCouponApplying() {
+        String couponCode = "discount";
+
+        Pages.productPage().clickShoppingCartLink();
+        Pages.shoppingCartPage().clickApplyDiscountCodeLink();
+        Pages.shoppingCartPage().setDiscountCodeInput(couponCode + "1");
+        Pages.shoppingCartPage().clickApplyDiscountButton();
+
+        assertEquals(Pages.shoppingCartPage().getDiscountPageError(), GlobalData.invalidCouponCodeErrorMessage(couponCode + "1"));
+    }
+
+    @Test(groups = {"success"})
+    @Description("Product is added to cart successfully. Tax and Total are estimated with the USA location successfully")
+    @Severity(SeverityLevel.NORMAL)
+    public void checkEstimationWithUsa() {
+        Pages.productPage().clickShoppingCartLink();
+        Pages.shoppingCartPage().clickEstimateShippingTaxLink();
+        Pages.shoppingCartPage().selectCountryDropdown("United States");
+        Pages.shoppingCartPage().selectStateDropdown("Florida");
+        Pages.shoppingCartPage().setPostalCodeInput("10021");
+
+        Pages.shoppingCartPage().selectTableRateRadiobutton();
+        assertEquals(Pages.shoppingCartPage().getOrderTax(), "$0.00");
+        assertEquals(Pages.shoppingCartPage().getOrderTotal(), "$77.00");
+
+        Pages.shoppingCartPage().selectFixedRadioButton();
+        assertEquals(Pages.shoppingCartPage().getEstimatedOrderTax(), "$5.00");
+        assertEquals(Pages.shoppingCartPage().getOrderTotal(), "$82.00");
+    }
+
+    @Test(groups = {"success"})
+    @Description("Product is added to cart successfully. Tax and Total are estimated with the Romania location successfully")
+    @Severity(SeverityLevel.NORMAL)
+    public void checkEstimationWithRomania() {
+        Pages.productPage().clickShoppingCartLink();
+        Pages.shoppingCartPage().clickEstimateShippingTaxLink();
+        Pages.shoppingCartPage().selectCountryDropdown("Romania");
+        Pages.shoppingCartPage().selectStateDropdown("Braşov");
+        Pages.shoppingCartPage().setPostalCodeInput("500008");
+//        Selenide.sleep(3000);
+        assertEquals(Pages.shoppingCartPage().getEstimatedOrderTax(), "$5.00");
+        assertEquals(Pages.shoppingCartPage().getOrderTotal(), "$77.00");
+        assertTrue(Pages.shoppingCartPage().isTableRateNotDisplayed());
+    }
 
     @Test
     @Description("Product is added to cart successfully. Mini-cart elements are checked. Shopping cart elements are checked. Cart is updated successfully.")
     @Severity(SeverityLevel.NORMAL)
-    public void checkMiniShoppingCart(){
-        start(GlobalData.mainURL);
-        Map<String, String> itemData = new HashMap<>();
+    public void checkMiniShoppingCart() {
+        startTest();
+        Pages.productPage().clickShoppingCartLink();
+        additionalItemData.put("Name", Pages.shoppingCartPage().getAdditionalProductName());
+        additionalItemData.put("Price", Pages.shoppingCartPage().getAdditionalProductPrice());
 
-        Pages.homepage().clickWomenJacketsMenuButton();
-        Pages.jacketsPage().clickProductCardByIndex(1);
-        Pages.productPage().selectSize();
-        Pages.productPage().selectColor();
-
-        itemData.put("Product name", Pages.productPage().getProductName());
-        itemData.put("Product price", Pages.productPage().getProductPrice());
-        itemData.put("Selected size", Pages.productPage().getSelectedSize());
-        itemData.put("Selected color",Pages.productPage().getSelectedColor());
-        itemData.put("Item qty", Pages.productPage().getItemQty());
-
-        Pages.productPage().clickAddToCartButton();
-        assertEquals(Pages.productPage().getSuccessMessage(),GlobalData.successATCMessage(itemData.get("Product name")));
-        assertEquals(Pages.header().getCartCounterValue(), "1");
-
-        Pages.header().clickCartButton();
-        assertEquals(Pages.header().getCartItemsQty(), itemData.get("Item qty"));
-        assertEquals(Pages.header().getCartSubtotal(), itemData.get("Product price"));
-        assertEquals(Pages.header().getItemName(), itemData.get("Product name"));
-        assertEquals(Pages.header().getItemQty(), itemData.get("Item qty"));
-
-        Pages.header().clickSeeDetailsLink();
-        assertEquals(Pages.header().getItemSizeValue(), itemData.get("Selected size"));
-        assertEquals(Pages.header().getItemColorValue(), itemData.get("Selected color"));
-
-        String orderTax = "$0.00";
-        Pages.header().clickViewAndEditCartLink();
-        assertEquals(Pages.shoppingCartPage().getPageTitle(), "Shopping Cart");
-        assertEquals(Pages.shoppingCartPage().getItemName(), itemData.get("Product name"));
-        assertEquals(Pages.shoppingCartPage().getItemSize(), itemData.get("Selected size"));
-        assertEquals(Pages.shoppingCartPage().getItemColor(), itemData.get("Selected color"));
-        assertEquals(Pages.shoppingCartPage().getItemPrice(), itemData.get("Product price"));
-        assertEquals(Pages.shoppingCartPage().getItemSubtotal(), itemData.get("Product price"));
-        assertEquals(Pages.shoppingCartPage().getOrderSubtotal(), itemData.get("Product price"));
-        assertEquals(Pages.shoppingCartPage().getOrderTax(), orderTax);
-
-        String newItemQty = "2";
-        String newOrderSubtotal = "$154.00";
-        Pages.shoppingCartPage().setItemQtyInput(newItemQty);
-        Pages.shoppingCartPage().clickUpdateCartButton();
-        //still displayed thw old price
-        assertEquals(Pages.shoppingCartPage().getOrderTotal(), newOrderSubtotal);
+        Pages.shoppingCartPage().clickAdditionalAddToCartButton();
+        assertEquals(Pages.shoppingCartPage().getItemNameByIndex(2), additionalItemData.get("Name"));
+        assertEquals(Pages.shoppingCartPage().getItemPriceByIndex(2), additionalItemData.get("Price"));
+        assertEquals(Pages.shoppingCartPage().getItemSubtotalByIndex(2, additionalItemData.get("Name")), additionalItemData.get("Price"));
     }
-
-    @Test
-    @Description("Two different products are added to cart successfully. Mini-cart elements are checked. Qty for second item is changed. Size for first item is changed. Cart is updated successfully.")
-    @Severity(SeverityLevel.NORMAL)
-    public void checkShoppingCartUpdating(){
-        start(GlobalData.mainURL);
-
-        HashMap<String, String> jackshirtItemData = new HashMap<>();
-        Pages.homepage().clickMenJacketsMenuButton();
-        Pages.jacketsPage().clickProductCardByIndex(1);
-        Pages.productPage().selectSize();
-        Pages.productPage().selectColor();
-        jackshirtItemData.put("Name", Pages.productPage().getProductName());
-        jackshirtItemData.put("Price", Pages.productPage().getProductPrice());
-        jackshirtItemData.put("Size", Pages.productPage().getSelectedSize());
-        jackshirtItemData.put("Color", Pages.productPage().getSelectedColor());
-        jackshirtItemData.put("Qty", Pages.productPage().getItemQty());
-        Pages.productPage().clickAddToCartButton();
-        assertEquals(Pages.header().getCartCounterValue(), "1");
-
-        HashMap<String, String> trainerItemData = new HashMap<>();
-        Pages.header().clickMenJacketsMenuButton();
-        Pages.jacketsPage().clickProductCardByIndex(3);
-        Pages.productPage().selectSize();
-        Pages.productPage().selectColor();
-        trainerItemData.put("Name", Pages.productPage().getProductName());
-        trainerItemData.put("Price", Pages.productPage().getProductPrice());
-        trainerItemData.put("Size", Pages.productPage().getSelectedSize());
-        trainerItemData.put("Color", Pages.productPage().getSelectedColor());
-        trainerItemData.put("Qty", Pages.productPage().getItemQty());
-        Pages.productPage().clickAddToCartButton();
-        assertEquals(Pages.header().getCartCounterValue(), "2");
-
-        Pages.header().clickCartButton();
-        assertEquals(Pages.header().getItemNameByIndex(1), trainerItemData.get("Name"));
-        assertEquals(Pages.header().getItemNameByIndex(2), jackshirtItemData.get("Name"));
-
-        String newItemQty = "2";
-        String newItemSubtotal = "$113.98";
-        String newOrderTotal = "$158.98";
-        Pages.header().clickViewAndEditCartLink();
-        Pages.shoppingCartPage().setItemQtyInputByIndex(2, newItemQty);
-        Pages.shoppingCartPage().clickUpdateCartButton();
-        assertEquals(Pages.shoppingCartPage().getItemSubtotalByIndex(2, trainerItemData.get("Name")), newItemSubtotal);
-        assertEquals(Pages.shoppingCartPage().getOrderTotal(), newOrderTotal);
-
-        Pages.shoppingCartPage().clickEditButton(1);
-        Pages.productPage().selectSizeByIndex(2);
-        String newSize = Pages.productPage().getSelectedSize();
-        Pages.productPage().clickUpdateCartButton();
-        assertEquals(Pages.shoppingCartPage().getItemSizeValueByIndex(2), newSize);
-    }
-
-
-
-
-
-
 
 }

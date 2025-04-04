@@ -6,6 +6,7 @@ import tools.PageTools;
 
 public class CheckoutPaymentPage extends PageTools {
 
+    private final By pageTitle = By.xpath("(//ul[@class='opc-progress-bar']/li/span)[2]");
     private final By placeOrderButton = By.xpath("//button[@class='action primary checkout']");
     private final By totalAmount = By.xpath("//strong/span[@class='price']");
     private final By orderTotalValue = By.xpath("//strong/span[@class='price']");
@@ -18,49 +19,79 @@ public class CheckoutPaymentPage extends PageTools {
     private final By itemColor = By.xpath("//dd[@class='values'][2]");
     private final By shipToInfoBox = By.xpath("//div[@class='ship-to']/div[@class='shipping-information-content']");
     private final By shippingMethodInfoBox = By.xpath("//div[@class='shipping-information-content']/span[@class='value']");
+    private final By billingAddressInfo = By.xpath("//div[@class='billing-address-details']");
 
-    @Step("Click Place Order button")
-    public CheckoutSuccessPage clickPlaceOrderButton(){
-        click(placeOrderButton);
-        return new CheckoutSuccessPage();
-    }
+    //----------------isDisplayed----------------
+
     @Step("Check if Total amount is displayed")
-    public boolean totalAmountIsDisplayed(){
+    public boolean totalAmountIsDisplayed() {
         waitForElementVisible(totalAmount);
         return isElementVisible(totalAmount);
     }
+
+    //----------------Get----------------
+
     @Step("Get order Total value")
-    public String getOrderTotal(){
+    public String getOrderTotal() {
         return getElementText(orderTotalValue);
     }
-    @Step("Click View Details link")
-    public void clickViewDetailsLink(){
-        click(viewDetailsLink);
-    }
+
     @Step("Get item name by {index}")
-    public String getItemNameByIndex(int index){
+    public String getItemNameByIndex(int index) {
 //        waitForElementVisibleUntil(itemName, 5);
-        return  getElementTextByIndex(itemName, index);
+        return getElementTextByIndex(itemName, index);
     }
+
     @Step("Get item price by {index}")
-    public String getItemPriceByIndex(int index){
-        return  getElementTextByIndex(itemPrice, index);
+    public String getItemPriceByIndex(int index) {
+        return getElementTextByIndex(itemPrice, index);
     }
+
     @Step("Get item size by {index}")
-    public String getItemSizeByIndex(int index){
-        return  getElementTextByIndex(itemSize, index);
+    public String getItemSizeByIndex(int index) {
+        return getElementTextByIndex(itemSize, index);
     }
+
     @Step("Get item color by {index}")
-    public String getItemColorByIndex(int index){
-        return  getElementTextByIndex(itemColor, index);
+    public String getItemColorByIndex(int index) {
+        return getElementTextByIndex(itemColor, index);
     }
+
     @Step("Get Ship To info text")
-    public String getShipToInfoBoxText(){
+    public String getShipToInfoBoxText() {
         return getElementText(shipToInfoBox);
     }
+
+    @Step("Get Billing Address info text")
+    public String getBillingAddressText() {
+        return getElementText(billingAddressInfo);
+    }
+
     @Step("Get Shipping Method info text")
-    public String getShippingMethodInfoBox(){
+    public String getShippingMethodInfoBox() {
         return getElementText(shippingMethodInfoBox);
+    }
+
+    @Step("Get page title text")
+    public String getPageTitle() {
+        waitForElementEnabled(placeOrderButton);
+        return getElementText(pageTitle);
+    }
+
+    //----------------Set/Select----------------
+
+
+    //----------------Click----------------
+
+    @Step("Click Place Order button")
+    public CheckoutSuccessPage clickPlaceOrderButton() {
+        click(placeOrderButton);
+        return new CheckoutSuccessPage();
+    }
+
+    @Step("Click View Details link")
+    public void clickViewDetailsLink() {
+        click(viewDetailsLink);
     }
 
 

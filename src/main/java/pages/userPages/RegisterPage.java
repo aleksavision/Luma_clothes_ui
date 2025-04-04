@@ -2,8 +2,10 @@ package pages.userPages;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import pages.Pages;
 import tools.PageTools;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class RegisterPage extends PageTools {
@@ -28,82 +30,109 @@ public class RegisterPage extends PageTools {
     private final By passwordErrorMessage = By.xpath("//div[@for='password']");
     private final By confirmPasswordErrorMessage = By.xpath("//div[@for='password-confirmation']");
 
-    //actions
+    //-------------------isDisplayed-------------------
+
+    @Step("Check if First Name label is displayed")
+    public boolean firstNameLabelIsDisplayed() {
+        return isElementInFieldsetVisible(fieldsetPersonalInfo, firstNameLabel);
+    }
+
+    @Step("Check if Last Name label is displayed")
+    public boolean lastNameLabelIsDisplayed() {
+        return isElementInFieldsetVisible(fieldsetPersonalInfo, lastNameLabel);
+    }
+
+    @Step("Check if Newsletter label is displayed")
+    public boolean newsletterLabelIsDisplayed() {
+        return isElementInFieldsetVisible(fieldsetPersonalInfo, newsletterLabel);
+    }
+
+    @Step("Check if Email label is displayed")
+    public boolean emailLabelIsDisplayed() {
+        return isElementInFieldsetVisible(fieldsetSignInInfo, emailLabel);
+    }
+
+    @Step("Check if Password label is displayed")
+    public boolean passwordLabelIsDisplayed() {
+        return isElementInFieldsetVisible(fieldsetSignInInfo, passwordLabel);
+    }
+
+    @Step("Check if Confirm Password label is displayed")
+    public boolean confirmPasswordLabelIsDisplayed() {
+        return isElementInFieldsetVisible(fieldsetSignInInfo, confirmPasswordLabel);
+    }
+
+    @Step("Check if Create an Account button is displayed")
+    public boolean createAnAccountButtonIsDisplayed() {
+        return isElementVisible(createAnAccountButton);
+    }
+
+    //-------------------Get-------------------
+
+    @Step("Get error message text for First Name field")
+    public String getFirstNameErrorMessage() {
+        return getElementText(firstNameErrorMessage);
+    }
+
+    @Step("Get error message text for Last Name field")
+    public String getLastNameErrorMessage() {
+        return getElementText(lastNameErrorMessage);
+    }
+
+    @Step("Get error message text for Email field")
+    public String getEmailErrorMessage() {
+        return getElementText(emailErrorMessage);
+    }
+
+    @Step("Get error message text for Password field")
+    public String getPasswordErrorMessage() {
+        return getElementText(passwordErrorMessage);
+    }
+
+    @Step("Get error message text for Confirm Password field")
+    public String getConfirmPasswordErrorMessage() {
+        return getElementText(confirmPasswordErrorMessage);
+    }
+
+    //-------------------Set/Select-------------------
+
     @Step("Fill First Name field with {firstName}")
-    public void setFirstNameInput(String firstName){
+    public void setFirstNameInput(String firstName) {
         typeIntoElementInFieldset(fieldsetPersonalInfo, firstNameInput, firstName);
     }
+
     @Step("Fill Last Name field with {lastName}")
-    public void setLastNameInput(String lastName){
+    public void setLastNameInput(String lastName) {
         typeIntoElementInFieldset(fieldsetPersonalInfo, lastNameInput, lastName);
     }
+
     @Step("Fill Email field with {email}")
-    public void setEmailInput(String email){
+    public void setEmailInput(String email) {
         typeIntoElementInFieldset(fieldsetSignInInfo, emailInput, email);
     }
+
     @Step("Fill Password field with {password}")
-    public void setPasswordInput(String password){
+    public void setPasswordInput(String password) {
         typeIntoElementInFieldset(fieldsetSignInInfo, passwordInput, password);
     }
+
     @Step("Fill Confirm Password field with {password}")
-    public void setConfirmPasswordInput(String password){
+    public void setConfirmPasswordInput(String password) {
         typeIntoElementInFieldset(fieldsetSignInInfo, confirmPasswordInput, password);
     }
+
+    //-------------------Click-------------------
+
     @Step("Click Create an Account button")
-    public MyAccountPage clickCreateAnAccountButton(){
+    public MyAccountPage clickCreateAnAccountButton() {
         click(createAnAccountButton);
         return new MyAccountPage();
     }
-    @Step("Check if First Name label is displayed")
-    public boolean firstNameLabelIsDisplayed(){
-        return isElementInFieldsetVisible(fieldsetPersonalInfo, firstNameLabel);
-    }
-    @Step("Check if Last Name label is displayed")
-    public boolean lastNameLabelIsDisplayed(){
-        return isElementInFieldsetVisible(fieldsetPersonalInfo, lastNameLabel);
-    }
-    @Step("Check if Newsletter label is displayed")
-    public boolean newsletterLabelIsDisplayed(){
-        return isElementInFieldsetVisible(fieldsetPersonalInfo, newsletterLabel);
-    }
-    @Step("Check if Email label is displayed")
-    public boolean emailLabelIsDisplayed(){
-        return isElementInFieldsetVisible(fieldsetSignInInfo, emailLabel);
-    }
-    @Step("Check if Password label is displayed")
-    public boolean passwordLabelIsDisplayed(){
-        return isElementInFieldsetVisible(fieldsetSignInInfo, passwordLabel);
-    }
-    @Step("Check if Confirm Password label is displayed")
-    public boolean confirmPasswordLabelIsDisplayed(){
-        return isElementInFieldsetVisible(fieldsetSignInInfo, confirmPasswordLabel);
-    }
-    @Step("Check if Create an Account button is displayed")
-    public boolean createAnAccountButtonIsDisplayed(){
-        return isElementVisible(createAnAccountButton);
-    }
-    @Step("Check error message text for First Name field")
-    public String getFirstNameErrorMessage(){
-        return getElementText(firstNameErrorMessage);
-    }
-    @Step("Check error message text for Last Name field")
-    public String getLastNameErrorMessage(){
-        return getElementText(lastNameErrorMessage);
-    }
-    @Step("Check error message text for Email field")
-    public String getEmailErrorMessage(){
-        return getElementText(emailErrorMessage);
-    }
-    @Step("Check error message text for Password field")
-    public String getPasswordErrorMessage(){
-        return getElementText(passwordErrorMessage);
-    }
-    @Step("Check error message text for Confirm Password field")
-    public String getConfirmPasswordErrorMessage(){
-        return getElementText(confirmPasswordErrorMessage);
-    }
+
+    //-------------------Others-------------------
+
     @Step("Check if First Name/Last Name/Email/Password/Confirm Password fields and labels and Create an Account button are displayed")
-    public void allFieldsCtaAsserts(){
+    public void allFieldsCtaAsserts() {
         assertTrue(firstNameLabelIsDisplayed());
         assertTrue(lastNameLabelIsDisplayed());
         assertTrue(newsletterLabelIsDisplayed());
@@ -116,6 +145,39 @@ public class RegisterPage extends PageTools {
         assertTrue(isElementInFieldsetVisible(fieldsetSignInInfo, emailInput));
         assertTrue(isElementInFieldsetVisible(fieldsetSignInInfo, passwordInput));
         assertTrue(isElementInFieldsetVisible(fieldsetSignInInfo, confirmPasswordInput));
+    }
+
+    @Step("Get relevant error for case {errorMethod}")
+    public void getErrorMessages(Object errorMethods, String expectedError) {
+
+        // Если errorMethods - это строка, проверяем одну ошибку
+        if (errorMethods instanceof String) {
+            assertEquals(getErrorUsingMethod((String) errorMethods), expectedError);
+        }
+        // Если errorMethods - это массив строк, проверяем несколько ошибок для пустых полей
+        else if (errorMethods instanceof String[]) {
+            String[] methods = (String[]) errorMethods;
+            for (String method : methods) {
+                assertEquals(getErrorUsingMethod(method), expectedError);
+            }
+        }
+    }
+
+    private String getErrorUsingMethod(String errorMethod) {
+        switch (errorMethod) {
+            case "getFirstNameFieldError":
+                return getFirstNameErrorMessage();
+            case "getLastNameFieldError":
+                return getLastNameErrorMessage();
+            case "getEmailFieldError":
+                return getEmailErrorMessage();
+            case "getPasswordFieldError":
+                return getPasswordErrorMessage();
+            case "getConfirmPasswordFieldError":
+                return getConfirmPasswordErrorMessage();
+            default:
+                throw new IllegalArgumentException("Unknown error method: " + errorMethod);
+        }
     }
 
 

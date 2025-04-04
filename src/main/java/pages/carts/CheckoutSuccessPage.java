@@ -13,19 +13,22 @@ public class CheckoutSuccessPage extends PageTools {
     private final By continueShoppingButton = By.xpath("//a[@class='action primary continue']");
 
     @Step("Check success message text")
-    public String getSuccessMessage(){
+    public String getSuccessMessage() {
         return getElementText(successMessageTitle);
     }
+
     @Step("Check success message text")
-    public String getSuccessMessageText(){
+    public String getSuccessMessageText() {
         return getElementText(successMessageText);
     }
+
     @Step("Check created order number")
-    public String getOrderNumber(){
+    public String getOrderNumber() {
         return getElementText(orderNumber);
     }
+
     @Step("Click Continue Shopping button")
-    public Homepage clickContinueShoppingButton(){
+    public Homepage clickContinueShoppingButton() {
         click(continueShoppingButton);
         return new Homepage();
     }

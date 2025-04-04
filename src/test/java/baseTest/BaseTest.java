@@ -7,6 +7,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
 
 import org.testng.ITestContext;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.asserts.SoftAssert;
@@ -23,7 +24,7 @@ public class BaseTest extends BrowserFactory {
     private final ThreadLocal<Boolean> holdBrowserOpen = new ThreadLocal<>();
 
     @BeforeTest
-    public void setUpDriver(){
+    public void setUpDriver() {
         browserName.set(System.getProperty("browserName", "chrome"));
         headless.set(Boolean.parseBoolean("headless"));
         holdBrowserOpen.set((Boolean.parseBoolean("holdBrowserOpen")));
@@ -38,11 +39,13 @@ public class BaseTest extends BrowserFactory {
         openBrowser();
         setTools();
     }
-    private void setTools(){
+
+    private void setTools() {
         softAssert = new SoftAssert();
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
-    private void openBrowser(){
+
+    private void openBrowser() {
         String urlAddress = URL.get();
         if (urlAddress != null) {
             Selenide.open(urlAddress);
@@ -52,11 +55,12 @@ public class BaseTest extends BrowserFactory {
         }
     }
 
-    protected void  cleanWebsiteData(){
+    private void cleanWebsiteData() {
         Selenide.clearBrowserLocalStorage();
         Selenide.clearBrowserCookies();
     }
-    @AfterTest
+
+    @AfterMethod
     protected void closeBrowser(ITestContext context) {
         cleanWebsiteData();
         WebDriverRunner.closeWebDriver();
