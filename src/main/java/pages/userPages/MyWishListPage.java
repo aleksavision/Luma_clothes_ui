@@ -17,7 +17,7 @@ public class MyWishListPage extends PageTools {
     private final By addAllToCartButton = By.xpath("//button[@class='action tocart']");
     private final By successMessage = By.xpath("//div[@class='message-success success message']/div");
     private final By emptyInfoMessage = By.xpath("//div[@class='message info empty']/span");
-    private final By removeItemButton = By.xpath("//a[@data-role='remove']");
+    private final By removeItemButton = By.xpath("//a[@title='Remove Item']");
     private final By listQty = By.xpath("//span[@class='toolbar-number']");
     private final By updateWishlistButton = By.xpath("//button[@class='action update']");
     private final By itemQtyInput = By.xpath("//input[@data-role='qty']");

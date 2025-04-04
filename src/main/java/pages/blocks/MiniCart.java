@@ -28,7 +28,7 @@ public class MiniCart extends PageTools {
     private final By itemDetailedInfo = By.xpath("//dd[@class='values']/span");
     private final By updateButton = By.xpath("//button[@title='Update']");
     private final By editItemButton = By.xpath("//a[@title='Edit item']");
-    private final By removeItemButton = By.xpath("//a[@title='Remove item']");
+    private final By removeItemButton = By.xpath("//div[@class='secondary']/a[@title='Remove item']");
     private final By proceedToCheckoutButton = By.xpath("//button[@id='top-cart-btn-checkout']");
     private final By okConfirmRemoveButton = By.xpath("//button[@class='action-primary action-accept']");
     private final By emptyCartNotification = By.xpath("//strong[@class='subtitle empty']");
@@ -38,6 +38,11 @@ public class MiniCart extends PageTools {
     @Step("Check if Empty cart notification is displayed")
     public boolean emptyCartNotificationIsDisplayed() {
         return isElementVisible(emptyCartNotification);
+    }
+
+    @Step("Check if Cart qty element is displayed")
+    public boolean cartQtyElementIsDisplayed() {
+        return isElementVisible(cartCounter);
     }
 
     //---------------------Get----------------------

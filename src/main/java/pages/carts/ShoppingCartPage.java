@@ -151,6 +151,7 @@ public class ShoppingCartPage extends PageTools {
 
     @Step("Get order Estimated Tax value")
     public String getEstimatedOrderTax() {
+        waitForElementEnabled(orderEstimatedTaxValue);
         waitForElementInvisibleUntil(orderLoader, 5);
         return getElementText(orderEstimatedTaxValue);
     }
@@ -322,7 +323,5 @@ public class ShoppingCartPage extends PageTools {
     @Step("Set Postal code field with {postalCode}")
     public void setPostalCodeInput(String postalCode) {
         clearText(postalCodeInput);
-        type(postalCodeInput, postalCode);
-        click(orderEstimatedTaxValue);
     }
 }

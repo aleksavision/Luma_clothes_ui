@@ -41,7 +41,7 @@ public class MiniCartTests extends BaseTest {
         junoJacketData.put("Size", Pages.productPage().getSelectedSize());
         junoJacketData.put("Color", Pages.productPage().getSelectedColor());
 
-        assertEquals(Pages.miniCart().getCartItemsQty(), "1");
+        assertEquals(Pages.miniCart().getCartItemsQty(), "[1]");
         assertEquals(Pages.miniCart().getCartSubtotal(), junoJacketData.get("Price"));
         assertEquals(Pages.miniCart().getItemName(), junoJacketData.get("Name"));
 

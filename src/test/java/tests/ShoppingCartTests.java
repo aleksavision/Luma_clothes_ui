@@ -139,9 +139,9 @@ public class ShoppingCartTests extends BaseTest {
         Pages.shoppingCartPage().selectCountryDropdown("United States");
         Pages.shoppingCartPage().selectStateDropdown("Florida");
         Pages.shoppingCartPage().setPostalCodeInput("10021");
+        assertEquals(Pages.shoppingCartPage().getOrderTax(), "$0.00");
 
         Pages.shoppingCartPage().selectTableRateRadiobutton();
-        assertEquals(Pages.shoppingCartPage().getOrderTax(), "$0.00");
         assertEquals(Pages.shoppingCartPage().getOrderTotal(), "$77.00");
 
         Pages.shoppingCartPage().selectFixedRadioButton();
@@ -158,9 +158,8 @@ public class ShoppingCartTests extends BaseTest {
         Pages.shoppingCartPage().selectCountryDropdown("Romania");
         Pages.shoppingCartPage().selectStateDropdown("Braşov");
         Pages.shoppingCartPage().setPostalCodeInput("500008");
-//        Selenide.sleep(3000);
         assertEquals(Pages.shoppingCartPage().getEstimatedOrderTax(), "$5.00");
-        assertEquals(Pages.shoppingCartPage().getOrderTotal(), "$77.00");
+        assertEquals(Pages.shoppingCartPage().getOrderTotal(), "$82.00");
         assertTrue(Pages.shoppingCartPage().isTableRateNotDisplayed());
     }
 

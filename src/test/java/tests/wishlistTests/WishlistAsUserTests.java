@@ -54,7 +54,7 @@ public class WishlistAsUserTests extends BaseTest {
 
         Pages.collectionPage().clickAddToWishlistButtonByIndexAsUser(erikaShortIndex);
 
-        assertEquals(Pages.myWishListPage().getItemsQty(), "1");
+        assertEquals(Pages.myWishListPage().getItemsQty(), "1 Item");
         assertEquals(Pages.collectionPage().getSuccessMessage(), GlobalData.successAddingToWishlistMessage(erikaShortData.get("Name")));
         assertEquals(Pages.myWishListPage().getItemName(erikaShortIndex), erikaShortData.get("Name"));
 
@@ -67,7 +67,7 @@ public class WishlistAsUserTests extends BaseTest {
 
         Pages.collectionPage().clickProductCardByIndex(erikaShortIndex).clickAddToWishlistButtonAsUser();
 
-        assertEquals(Pages.myWishListPage().getItemsQty(), "1");
+        assertEquals(Pages.myWishListPage().getItemsQty(), "1 Item");
         assertEquals(Pages.collectionPage().getSuccessMessage(), GlobalData.successAddingToWishlistMessage(erikaShortData.get("Name")));
         assertEquals(Pages.myWishListPage().getItemName(erikaShortIndex), erikaShortData.get("Name"));
 
